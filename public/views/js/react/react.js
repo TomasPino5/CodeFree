@@ -3,7 +3,7 @@ let loadCourses = () => {
     .then(response => response.json())
     .then(value => {
         value.forEach(element => {
-            if (element.category == 'C#' || element.category == 'ASP.NET' || element.category == 'ASP.NET CORE') {
+            if (element.category == 'React') {
                 document.getElementById('videoCardsContainer').innerHTML += `
                     <a class="cardVideos" style="width: 10rem; text-decoration: none" href="${element.link}" target="_blank">
                         <img src="${element.thumbnail}" class="card-img-top" alt="...">

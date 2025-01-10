@@ -1,9 +1,17 @@
+function getRandomObjects(value, count) {
+    for (let i = value.length - 1; i > 0; i--) {
+        let randomIndex = Math.floor(Math.random() * (i + 1));
+        [value[i], value[randomIndex]] = [value[randomIndex], value[i]];
+    }
+    return value.slice(0, count);
+}
+
 let loadCourses = () => {
     fetch('../data/videos.json')
     .then(response => response.json())
     .then(value => {
-        let limitedVideos = value.slice(0, 25);
-        limitedVideos.forEach(element => {
+        let responseVideos = getRandomObjects(value, 20)
+        responseVideos.forEach(element => {
             document.getElementById('videoCardsContainer').innerHTML += `
                 <a class="cardVideos" style="width: 10rem; text-decoration: none" href="${element.link}" target="_blank">
                     <img src="${element.thumbnail}" class="card-img-top" alt="...">
@@ -12,8 +20,7 @@ let loadCourses = () => {
                         <p class="card-text first">${element.language}</p>
                         <p class="card-text">${element.channel}</p>
                         <p class="card-text">${element.views}M Vistas - ${element.duration}${element.duration > 1 ? ' Horas' : ' Hora'}</p>
-                        <img class="img-language" src="${element.languageIcon}" />
-                        ${element.category == "HTML/CSS" ? '<img class="img-language" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" />' : ''}
+                        ${element.languageIcon.map(icon => `<img class="img-language" src="${icon}" alt="">`).join(' ')}
                     </div>
                 </a>`
         });
@@ -54,3 +61,75 @@ let carrousel = () => {
     })
 }
 carrousel()
+
+
+
+let movingIndex = () => {
+    let pageLinks = document.querySelectorAll(".page-link")
+
+    let previous = document.getElementById('previous')
+    let next = document.getElementById('next')
+
+    let index = 1
+    let actualIndex = 1
+
+    document.getElementById('start').classList.add('disabled')
+
+    const updateActive = (newIndex) => {
+        pageLinks[index].classList.remove("active");
+        index = newIndex;
+        pageLinks[index].classList.add("active");
+    };
+
+    updateActive(index);
+
+
+    pageLinks.forEach((link, idx) => {
+        link.addEventListener("click", () => {
+            if(idx > 0 && idx < 7) {
+                updateActive(idx);
+                actualIndex = idx
+                btnController()
+            }
+        });
+    });
+
+    previous.addEventListener("click", () => {
+        if (index > 2) {
+            updateActive(index - 1)
+            actualIndex--
+            btnController()
+        } else if(index == 2) {
+            updateActive(index - 1)
+            actualIndex--
+            btnController()
+        }
+    })
+
+    next.addEventListener("click", () => {
+        if (index < pageLinks.length - 3) {
+            updateActive(index + 1);
+            actualIndex++
+            btnController()
+        } else if(index == pageLinks.length - 3) {
+            updateActive(index + 1);
+            actualIndex++
+            btnController()
+        }
+    });
+
+    let btnController = () => {
+        if (actualIndex == 1) {
+            document.getElementById('start').classList.add('disabled');
+        } else {
+            document.getElementById('start').classList.remove('disabled');
+        }
+    
+        if (actualIndex == 6) {
+            document.getElementById('finish').classList.add('disabled');
+        } else {
+            document.getElementById('finish').classList.remove('disabled');
+        }
+    }
+}
+movingIndex()

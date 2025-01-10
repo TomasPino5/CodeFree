@@ -45,6 +45,18 @@ app.get('/csharp', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/views/csharp/csharp.html'));
 });
 
+app.get('/node.js', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/views/js/node/node.html'));
+});
+
+app.get('/react', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/views/js/react/react.html'));
+});
+
+app.get('/vue.js', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/views/js/vue/vue.html'));
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)
 })

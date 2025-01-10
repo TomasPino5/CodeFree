@@ -224,6 +224,19 @@
     margin: 4px 0 0 5px;
 }
 
+.page-link {
+    color: #464545;
+}
+
+.page-link:hover {
+    color: #464545;
+}
+
+.page-link.active {
+    background-color: #e9e6e6;
+}
+
+
 @media (max-width: 600px) {
     .footer {
       flex-direction: column;
