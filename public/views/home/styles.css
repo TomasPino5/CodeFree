@@ -236,6 +236,55 @@
     background-color: #e9e6e6;
 }
 
+.btn {
+    background-color: white !important;
+    color: black;
+    margin: 15px 0 0 15px;
+    border: none;
+}
+
+.btn:hover {
+    background-color: white;
+    color: black;
+    margin: 15px 0 0 15px;
+    border: none;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+    background-color: white;
+    color: black;
+    margin: 15px 0 0 15px;
+    border: none;
+}
+
+.btn.focus, .btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active:focus, .btn-secondary:not(:disabled):not(.disabled):active:focus, .show>.btn-secondary.dropdown-toggle:focus {
+    box-shadow: none;
+}
+
+.btn-secondary.focus, .btn-secondary:focus {
+    background-color: white;
+    color: black;
+    border: none;
+}
+
+.logo {
+    width: 40px;
+    height: auto;
+}
+
+.btn-group.dropright:hover .dropdown-menu {
+    display: block;
+    position: absolute;
+}
+
+.btnActive {
+    background-color: rgb(236, 236, 236) !important;
+}
 
 @media (max-width: 600px) {
     .footer {
