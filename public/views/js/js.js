@@ -1,9 +1,73 @@
 function getRandomObjects(value) {
-    for (let i = value.length - 1; i > 0; i--) {
+    let filterValue = value.filter(element => element.category == 'Javascript' || element.category == 'Node.js' || element.category == 'React' || element.category == 'Express' || element.category == 'Next.js' || element.category == 'Vue.js')
+    for (let i = filterValue.length - 1; i > 0; i--) {
         let randomIndex = Math.floor(Math.random() * (i + 1));
-        [value[i], value[randomIndex]] = [value[randomIndex], value[i]];
+        [filterValue[i], filterValue[randomIndex]] = [filterValue[randomIndex], filterValue[i]];
     }
-    return value
+    return filterValue
+}
+
+function renderedCards(value) {
+    document.getElementById('videoCardsContainer').innerHTML = ''
+    value.forEach(element => {
+        document.getElementById('videoCardsContainer').innerHTML += `
+        <a class="cardVideos" style="width: 10rem; text-decoration: none" href="${element.link}" target="_blank">
+            <img src="${element.thumbnail}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">${element.title}</h5>
+                <p class="card-text first">${element.language}</p>
+                <p class="card-text">${element.channel}</p>
+                <p class="card-text">${element.views}M Vistas - ${element.duration}${element.duration > 1 ? ' Horas' : ' Hora'}</p>
+                ${element.languageIcon.map(icon => `<img class="img-language" src="${icon}" alt="">`).join(' ')}
+            </div>
+        </a>`
+    });
+}
+
+function renderedCards(value, index) {
+    document.getElementById('videoCardsContainer').innerHTML = '';
+
+    let slicedValue;
+    if (index == 1) {
+        slicedValue = value.slice(0, 25);
+    } else if (index == 2) {
+        slicedValue = value.slice(25, 50); 
+    } else {
+        slicedValue = value.slice(0, 25);
+    }
+
+    slicedValue.forEach(element => {
+        document.getElementById('videoCardsContainer').innerHTML += `
+            <a class="cardVideos" style="width: 10rem; text-decoration: none" href="${element.link}" target="_blank">
+                <img src="${element.thumbnail}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">${element.title}</h5>
+                    <p class="card-text first">${element.language}</p>
+                    <p class="card-text">${element.channel}</p>
+                    <p class="card-text">${element.views}M Vistas - ${element.duration}${element.duration > 1 ? ' Horas' : ' Hora'}</p>
+                    ${element.languageIcon.map(icon => `<img class="img-language" src="${icon}" alt="">`).join(' ')}
+                </div>
+            </a>`;
+    });
+}
+
+function renderByLanguage(value, language) {
+    document.getElementById('videoCardsContainer').innerHTML = ''
+    value.forEach(element => {
+        if (element.language == language) {
+            document.getElementById('videoCardsContainer').innerHTML += `
+            <a class="cardVideos" style="width: 10rem; text-decoration: none" href="${element.link}" target="_blank">
+                <img src="${element.thumbnail}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">${element.title}</h5>
+                    <p class="card-text first">${element.language}</p>
+                    <p class="card-text">${element.channel}</p>
+                    <p class="card-text">${element.views}M Vistas - ${element.duration}${element.duration > 1 ? ' Horas' : ' Hora'}</p>
+                    ${element.languageIcon.map(icon => `<img class="img-language" src="${icon}" alt="">`).join(' ')}
+                </div>
+            </a>`
+        }
+    });
 }
 
 let loadCourses = () => {
@@ -11,13 +75,74 @@ let loadCourses = () => {
     .then(response => response.json())
     .then(value => {
 
-        let response = value.filter(element => {
-            if (element.category == 'Javascript' || element.category == 'Node.js' || element.category == 'React' || element.category == 'Next.js' || element.category == 'Express' || element.category == 'Vue.js') {
-                return element   
+        let responseVideos = getRandomObjects(value);
+    
+        let languages = document.querySelectorAll(".language");
+
+        let activeLanguage = null;
+        let activeSort = null;
+
+        let updateLanguageFilter = (language) => {
+            if (activeLanguage == language) {
+                activeLanguage = null;
+                document.getElementById(language).classList.remove('btnActive');
+            } else {
+                languages.forEach(lang => lang.classList.remove('btnActive'));
+                activeLanguage = language;
+                document.getElementById(language).classList.add('btnActive');
             }
+        };
+
+        const applyFilters = () => {
+            let filteredVideos = responseVideos;
+
+            if (activeLanguage) {
+                filteredVideos = filteredVideos.filter(video => video.language == activeLanguage);
+            }
+
+            if (activeSort == 'views') {
+                filteredVideos = filteredVideos.sort((a, b) => b.views - a.views);
+            } else if (activeSort == 'duration') {
+                filteredVideos = filteredVideos.sort((a, b) => b.duration - a.duration);
+            }
+
+            if (activeSort == null && activeLanguage == null) {
+                filteredVideos = getRandomObjects(value);
+            }
+            
+            renderedCards(filteredVideos, 1);
+        };
+
+        languages.forEach(language => {
+            language.addEventListener("click", () => {
+                updateLanguageFilter(language.id);
+                applyFilters();
+            });
         });
-        
-        let responseVideos = getRandomObjects(response)
+
+        document.getElementById('views').addEventListener('click', () => {
+            if (activeSort == 'views') {
+                activeSort = null;
+                document.getElementById('views').classList.remove('btnActive');     
+            } else {
+                document.getElementById('duration').classList.remove('btnActive');
+                document.getElementById('views').classList.add('btnActive');
+                activeSort = 'views';
+            }
+            applyFilters();
+        });
+
+        document.getElementById('duration').addEventListener('click', () => {
+            if (activeSort == 'duration') {
+                activeSort = null;
+                document.getElementById('duration').classList.remove('btnActive');
+            } else {
+                document.getElementById('views').classList.remove('btnActive');
+                document.getElementById('duration').classList.add('btnActive');
+                activeSort = 'duration';
+            }
+            applyFilters();
+        });
  
         let pageLinks = document.querySelectorAll(".page-link")
         
@@ -89,37 +214,19 @@ let loadCourses = () => {
                 document.getElementById('finish').classList.remove('disabled');
             }
         }
-
-        let renderVideos = (videos) => {
-            videos.forEach(element => {
-                document.getElementById('videoCardsContainer').innerHTML += `
-                <a class="cardVideos" style="width: 10rem; text-decoration: none" href="${element.link}" target="_blank">
-                    <img src="${element.thumbnail}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">${element.title}</h5>
-                        <p class="card-text first">${element.language}</p>
-                        <p class="card-text">${element.channel}</p>
-                        <p class="card-text">${element.views}M Vistas - ${element.duration}${element.duration > 1 ? ' Horas' : ' Hora'}</p>
-                        ${element.languageIcon.map(icon => `<img class="img-language" src="${icon}" alt="">`).join(' ')}
-                    </div>
-                </a>`
-            });
-        }
         
         let handlePagination = (actualIndex) => {
             switch (actualIndex) {
                 case 1: 
-                document.getElementById('videoCardsContainer').innerHTML = ''
-                renderVideos(responseVideos.slice(0, 25))
-                    break;
+                renderedCards(responseVideos, 1)
+                break;
                 case 2: 
-                document.getElementById('videoCardsContainer').innerHTML = ''
-                renderVideos(responseVideos.slice(25, 50))
-                    break;
+                renderedCards(responseVideos, 2)
+                break;
                 default: console.log("Lo siento, ocurrio un error al reenderizar los videos")
             } 
         }
-
+        
         handlePagination(actualIndex)
     })
 }
