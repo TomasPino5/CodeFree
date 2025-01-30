@@ -12,7 +12,7 @@
 <body>
     <!-- inicia el navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
-        <a class="navbar-brand" href="inicio">CodeFree</a>
+        <a class="navbar-brand" href="inicio"><img src="views/utility/logo.png" alt="" class="logo"> CodeFree</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,12 +26,12 @@
                         <div class="dropdown-submenu dropright">
                             <a class="dropdown-item dropdown-toggle" href="javascript">JavaScript</a>
                             <ul class="dropdown-menu" style="margin-left: 5px;">
-                                <li><a class="dropdown-item smenu" href="node.js">Node.js</a></li>
-                                <li><a class="dropdown-item smenu" href="react">React</a></li>
+                                <li><a class="dropdown-item smenu" href="javascript/node.js">Node.js</a></li>
+                                <li><a class="dropdown-item smenu" href="javascript/react">React</a></li>
                             </ul>
                         </div>
                         <a class="dropdown-item" href="htmlcss">HTML/CSS</a>
-                        <a class="dropdown-item" href="python">Python</a>
+                        <a class="dropdown-item btnActive" href="inicio">Python <i class="fa-solid fa-xmark"></i></a>
                         <a class="dropdown-item" href="sql">SQL</a>
                         <a class="dropdown-item" href="typescript">TypeScript</a>
                         <a class="dropdown-item" href="java">Java</a>
@@ -47,13 +47,29 @@
     <!-- Finaliza el navbar -->
 
     <!-- comienzan los populares -->
+    <button type="button" class="btn btn-light" id="views">Visualizaciones</button>
+    <button type="button" class="btn btn-light" id="duration">Duracion</button>
+    <div class="btn-group dropright">
+        <button type="button" class="nav-link btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Idioma
+        </button>
+        <div class="dropdown-menu" style="margin-top: 20px;">
+            <a class="dropdown-item smenu language" id="Ingles" href="#">Ingles</a>
+            <a class="dropdown-item smenu language" id="Español" href="#">Español</a>
+            <a class="dropdown-item smenu language" id="Hindi" href="#">Hindi</a>
+            <a class="dropdown-item smenu language" id="Tamil" href="#">Tamil</a>
+            <a class="dropdown-item smenu language" id="Aleman" href="#">Aleman</a>
+            <a class="dropdown-item smenu language" id="Frances" href="#">Frances</a>
+            <a class="dropdown-item smenu language" id="Portugues" href="#">Portugues</a>
+        </div>
+    </div>
     <div>
         <div id="videoCardsContainer"></div>
     </div>
     <!-- Finalizan los populares -->
 
     <!-- Comienza el paginado -->
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation example" id="nav-pagination">
         <ul class="pagination" id="pagination">
             <li class="page-item" id="start"><a class="page-link" id="previous" href="#">Previous</a></li>
             <li class="page-item"><a class="page-link" id="first numbers" href="#">1</a></li>
@@ -65,7 +81,7 @@
 
     <!-- Comienza el footer -->
     <footer class="footer">
-        <p class="footer-brand">CodeFree</p>
+        <p class="footer-brand"><img src="views/utility/footerLogo.png" alt="" class="logo0"> CodeFree</p>
         <div class="social-media">
             <a href="https://www.linkedin.com/in/tomas-pino-001161285/" target="_blank">
                 <i class="fab fa-linkedin"></i>

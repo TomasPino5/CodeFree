@@ -59,10 +59,15 @@ let loadCourses = () => {
             if (activeLanguage == language) {
                 activeLanguage = null;
                 document.getElementById(language).classList.remove('btnActive');
+                document.getElementById(language).textContent = language
             } else {
+                if (activeLanguage) {
+                    document.getElementById(activeLanguage).textContent = activeLanguage
+                }
                 languages.forEach(lang => lang.classList.remove('btnActive'));
                 activeLanguage = language;
                 document.getElementById(language).classList.add('btnActive');
+                document.getElementById(language).innerHTML = `${language} <i class="fa-solid fa-xmark"></i>`
             }
         };
 
@@ -81,6 +86,8 @@ let loadCourses = () => {
 
             if (activeSort == null && activeLanguage == null) {
                 filteredVideos = getRandomObjects(value);
+            } else if (activeSort == null && activeLanguage) {
+                filteredVideos = getRandomObjects(filteredVideos);
             }
             
             renderedCards(filteredVideos);
@@ -96,11 +103,14 @@ let loadCourses = () => {
         document.getElementById('views').addEventListener('click', () => {
             if (activeSort == 'views') {
                 activeSort = null;
-                document.getElementById('views').classList.remove('btnActive');     
+                document.getElementById('views').classList.remove('btnActive'); 
+                document.getElementById('views').innerHTML = 'Visualizaciones'    
             } else {
                 document.getElementById('duration').classList.remove('btnActive');
                 document.getElementById('views').classList.add('btnActive');
                 activeSort = 'views';
+                document.getElementById('views').innerHTML = 'Visualizaciones <i class="fa-solid fa-xmark"></i>'
+                document.getElementById('duration').innerHTML = 'Duracion'
             }
             applyFilters();
         });
@@ -109,10 +119,13 @@ let loadCourses = () => {
             if (activeSort == 'duration') {
                 activeSort = null;
                 document.getElementById('duration').classList.remove('btnActive');
+                document.getElementById('duration').innerHTML = 'Duracion'
             } else {
                 document.getElementById('views').classList.remove('btnActive');
                 document.getElementById('duration').classList.add('btnActive');
                 activeSort = 'duration';
+                document.getElementById('duration').innerHTML = 'Duracion <i class="fa-solid fa-xmark"></i>'
+                document.getElementById('views').innerHTML = 'Visualizaciones'
             }
             applyFilters();
         });

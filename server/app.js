@@ -33,28 +33,16 @@ app.get('/typescript', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/views/typescript/typescript.html'));
 });
 
-app.get('/bashshell', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/views/bashshell/bashshell.html'));
-});
-
 app.get('/java', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/views/java/java.html'));
 });
 
-app.get('/csharp', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/views/csharp/csharp.html'));
-});
-
-app.get('/node.js', (req, res) => {
+app.get('/javascript/node.js', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/views/js/node/node.html'));
 });
 
-app.get('/react', (req, res) => {
+app.get('/javascript/react', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/views/js/react/react.html'));
-});
-
-app.get('/vue.js', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/views/js/vue/vue.html'));
 });
 
 app.listen(port, () => {

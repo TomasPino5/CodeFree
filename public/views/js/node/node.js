@@ -1,5 +1,5 @@
 let loadCourses = () => {
-    fetch('../data/videos.json')
+    fetch('../.././data/videos.json')
     .then(response => response.json())
     .then(value => {
         value.forEach(element => {

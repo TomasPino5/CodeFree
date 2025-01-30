@@ -86,10 +86,16 @@ let loadCourses = () => {
             if (activeLanguage == language) {
                 activeLanguage = null;
                 document.getElementById(language).classList.remove('btnActive');
+                document.getElementById(language).textContent = language
+                document.getElementById('nav-pagination').classList.remove('disabled0');
             } else {
+                if (activeLanguage) {
+                    document.getElementById(activeLanguage).textContent = activeLanguage
+                }
                 languages.forEach(lang => lang.classList.remove('btnActive'));
                 activeLanguage = language;
                 document.getElementById(language).classList.add('btnActive');
+                document.getElementById(language).innerHTML = `${language} <i class="fa-solid fa-xmark"></i>`
             }
         };
 
@@ -98,18 +104,37 @@ let loadCourses = () => {
 
             if (activeLanguage) {
                 filteredVideos = filteredVideos.filter(video => video.language == activeLanguage);
+                document.getElementById('nav-pagination').classList.add('disabled0');
+                actualIndex = 1
+                handlePagination(actualIndex)
+                updateActive(actualIndex);
+                btnController()
             }
 
             if (activeSort == 'views') {
                 filteredVideos = filteredVideos.sort((a, b) => b.views - a.views);
+                actualIndex = 1
+                handlePagination(actualIndex)
+                updateActive(actualIndex);
+                btnController()
             } else if (activeSort == 'duration') {
                 filteredVideos = filteredVideos.sort((a, b) => b.duration - a.duration);
+                actualIndex = 1
+                handlePagination(actualIndex)
+                updateActive(actualIndex);
+                btnController()
             }
 
             if (activeSort == null && activeLanguage == null) {
                 filteredVideos = getRandomObjects(value);
+                actualIndex = 1
+                handlePagination(actualIndex)
+                updateActive(actualIndex);
+                btnController()
+            } else if (activeSort == null && activeLanguage) {
+                filteredVideos = getRandomObjects(filteredVideos);
             }
-            
+
             renderedCards(filteredVideos, 1);
         };
 
@@ -123,11 +148,14 @@ let loadCourses = () => {
         document.getElementById('views').addEventListener('click', () => {
             if (activeSort == 'views') {
                 activeSort = null;
-                document.getElementById('views').classList.remove('btnActive');     
+                document.getElementById('views').classList.remove('btnActive');
+                document.getElementById('views').innerHTML = 'Visualizaciones'
             } else {
                 document.getElementById('duration').classList.remove('btnActive');
                 document.getElementById('views').classList.add('btnActive');
                 activeSort = 'views';
+                document.getElementById('views').innerHTML = 'Visualizaciones <i class="fa-solid fa-xmark"></i>'
+                document.getElementById('duration').innerHTML = 'Duracion'
             }
             applyFilters();
         });
@@ -136,10 +164,13 @@ let loadCourses = () => {
             if (activeSort == 'duration') {
                 activeSort = null;
                 document.getElementById('duration').classList.remove('btnActive');
+                document.getElementById('duration').innerHTML = 'Duracion'
             } else {
                 document.getElementById('views').classList.remove('btnActive');
                 document.getElementById('duration').classList.add('btnActive');
                 activeSort = 'duration';
+                document.getElementById('duration').innerHTML = 'Duracion <i class="fa-solid fa-xmark"></i>'
+                document.getElementById('views').innerHTML = 'Visualizaciones'
             }
             applyFilters();
         });
