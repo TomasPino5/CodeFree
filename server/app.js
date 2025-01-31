@@ -45,6 +45,10 @@ app.get('/javascript/react', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/views/js/react/react.html'));
 });
 
+app.get('/otros', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/views/other/other.html'));
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)
 })
