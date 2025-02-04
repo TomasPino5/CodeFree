@@ -301,6 +301,45 @@
     margin-left: 3px;
 }
 
+.form-control:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 1px solid #bbbcbe !important; 
+}
+
+.form-control:hover {
+    border: 1px solid #bbbcbe !important; 
+}
+
+.searchButton {
+    background-color: white !important;
+    color: black;
+    margin: 15px 0 0 15px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.searchButton:hover {
+    background-color: white;
+    color: black;
+    margin: 15px 0 0 15px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.searchButton:active {
+    color: black !important;
+    background-color: white !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #bbbcbe !important;
+}
+
+.searchButton:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 @media (max-width: 600px) {
     .footer {
       flex-direction: column;

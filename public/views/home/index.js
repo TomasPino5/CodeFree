@@ -116,28 +116,6 @@ let loadCourses = () => {
             }
         }
 
-        //search
-        //crear una nueva ruta para el search, en caso de que el input este vacio que vuelva a la ruta inicio
-       // document.getElementById('searchForm').addEventListener('submit', (event) => {
-          //  event.preventDefault()
-
-           // let searchTerm = document.getElementById('inputSearch').value.trim().toLowerCase();
-                
-          //  let filteredVideos = responseVideos.filter((video) => {
-          //      if (video.title) {
-           //         return video.title.trim().toLowerCase().includes(searchTerm);
-           //     }
-            //        return false
-           // });
-           // document.getElementById('nav-pagination').classList.add('disabled0');
-    //
-           // if (filteredVideos.length > 0) {        
-           //     renderedCards(filteredVideos, 100)
-           // } else {
-            //    document.getElementById('videoCardsContainer').innerHTML = '<h1>Lo sentimos, no se ha encontrado ningun video</h1>'
-           // }
-        //});
-
         document.getElementById('searchForm').addEventListener('submit', (event) => {
             event.preventDefault();
         

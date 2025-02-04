@@ -59,6 +59,16 @@ let loadCourses = () => {
     .then(value => {
 
         let responseVideos = getRandomObjects(value);
+
+        document.getElementById('searchForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+        
+            let searchTerm = document.getElementById('inputSearch').value.trim();
+        
+            if (searchTerm) {
+                window.location.href = `/search?query=${encodeURIComponent(searchTerm)}`;
+            }
+        });
     
         let languages = document.querySelectorAll(".language");
 
