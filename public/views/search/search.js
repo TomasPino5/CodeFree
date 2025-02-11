@@ -35,16 +35,16 @@ let loadCourses = () => {
 
             if (queryParam) {
                 let filteredVideos = responseVideos.filter((video) => {
-                    if (video.title) {
-                        return video.title.trim().toLowerCase().includes(queryParam);
-                    }
-                    return false;
+                    let titleMatch = video.title.trim().toLowerCase().includes(queryParam);
+                    let channelMatch = video.channel.trim().toLowerCase().includes(queryParam);
+                    return titleMatch || channelMatch;
                 });
             
                 if (filteredVideos.length > 0) {
+                    document.getElementById('result').innerHTML = `Resultados encontrados para "${queryParam}"`
                     renderedCards(filteredVideos);
                 } else {
-                    document.getElementById('videoCardsContainer').innerHTML = '<h1>Lo sentimos, no se ha encontrado ningún video</h1>';
+                    document.getElementById('result').innerHTML = 'Lo sentimos, no se ha encontrado ningún video';
                 }
 
                 document.getElementById('inputSearch').value = queryParam;
