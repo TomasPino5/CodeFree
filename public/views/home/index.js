@@ -30,9 +30,9 @@ function renderedCards(value, index) {
                 <img src="${element.thumbnail}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${element.title}</h5>
-                    <p class="card-text first">${element.language}</p>
+                    <p class="card-text first traducible">${element.language}</p>
                     <p class="card-text">${element.channel}</p>
-                    <p class="card-text">${element.views}M Vistas - ${element.duration}${element.duration > 1 ? ' Horas' : ' Hora'}</p>
+                    <p class="card-text traducible">${element.views}M Vistas - ${element.duration}${element.duration > 1 ? ' Horas' : ' Hora'}</p>
                     ${element.languageIcon.map(icon => `<img class="img-language" src="${icon}" alt="">`).join(' ')}
                 </div>
             </a>`;
@@ -185,3 +185,51 @@ let carrousel = () => {
     })
 }
 carrousel()
+
+let customDictionary = {
+    "ingles": "English",
+    "español": "Spanish",
+    "frances": "French",
+    "portugues": "Portuguese",
+    "aleman": "German",
+    "indonesio": "Indonesian",
+    "hindi": "Hindi",
+    "tamil": "Tamil",
+    "videos populares": "Popular Videos",
+    "aprende todas estas tecnologias y muchas mas!": "Learn all these technologies and more!",
+    "vistas": "Views",
+    "horas": "Hours",
+    "hora": "Hour",
+    "anterior": "Previous",
+    "siguiente": "Next",
+    "buscar": "Search",
+    "categorias": "Categories",
+    "© codefree. todos los derechos reservados.": "© codefree. All rights reserved.",
+};
+
+async function translateText(text) {
+    if (customDictionary[text.toLowerCase()]) {
+        return customDictionary[text.toLowerCase()];
+    }
+    let translatedText = text.split(" ").map(word => {
+        return customDictionary[word.toLowerCase()] || word;
+    }).join(" ");
+    return translatedText;
+}
+
+document.getElementById('inputSearch')
+
+document.getElementById("translateBtn").addEventListener("click", async () => {
+    let elements = document.querySelectorAll(".traducible");
+    let texts = Array.from(elements).map(el => el.innerText);
+    
+    let translatedTexts = await Promise.all(
+        texts.map(text => translateText(text))
+    );
+    
+    elements.forEach((el, index) => {
+        el.innerText = translatedTexts[index];
+    });
+
+    document.getElementById('inputSearch').placeholder = 'Search for a video'
+});
