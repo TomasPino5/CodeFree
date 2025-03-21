@@ -9,6 +9,51 @@ function getRandomObjects(value) {
 function renderedCards(value, index) {
     document.getElementById('videoCardsContainer').innerHTML = '';
 
+    document.addEventListener("click", () => {
+        setTimeout(async () => {
+            if (localStorage.getItem("language") == "en") {
+                let elements = document.querySelectorAll(".traducible");
+                let texts = Array.from(elements).map(el => el.innerText);
+                
+                let translatedTexts = await Promise.all(
+                    texts.map(text => translateText(text, 'en'))
+                );
+                
+                elements.forEach((el, index) => {
+                    el.innerText = translatedTexts[index];
+                });
+    
+                localStorage.setItem("language", "en");
+            }
+        }, 15);
+    });
+
+    let customDictionary = {
+        "Ingles": "English",
+        "Español": "Spanish",
+        "Frances": "French",
+        "Portugues": "Portuguese",
+        "Aleman": "German",
+        "Indonesio": "Indonesian",
+        "Hindi": "Hindi",
+        "Tamil": "Tamil",
+        "Vistas": "Views",
+        "Horas": "Hours",
+        "Hora": "Hour",
+    };
+    
+    async function translateText(text, lang) {
+        if (lang == 'en') {
+            if (customDictionary[text]) {
+                return customDictionary[text];
+            }
+            let translatedText = text.split(" ").map(word => {
+                return customDictionary[word] || word;
+            }).join(" ");
+            return translatedText;
+        }
+    }
+
     let slicedValue;
     if (index == 1) {
         slicedValue = value.slice(0, 25);
@@ -75,31 +120,17 @@ let loadCourses = () => {
         });
             
         previous.addEventListener("click", () => {
-            if (index > 2) {
-                updateActive(index - 1)
-                actualIndex--
-                btnController()
-                handlePagination(actualIndex)
-            } else if(index == 2) {
             updateActive(index - 1)
-                actualIndex--
-                btnController()
-                handlePagination(actualIndex)
-            }
+            actualIndex--
+            btnController()
+            handlePagination(actualIndex)
         })
             
         next.addEventListener("click", () => {
-            if (index < pageLinks.length - 3) {
-                updateActive(index + 1);
-                actualIndex++
-                btnController()
-                handlePagination(actualIndex)
-            } else if(index == pageLinks.length - 3) {
-                updateActive(index + 1);
-                actualIndex++
-                btnController()
-                handlePagination(actualIndex)
-            }
+            updateActive(index + 1);
+            actualIndex++
+            btnController()
+            handlePagination(actualIndex)
         });
             
         let btnController = () => {
@@ -186,50 +217,114 @@ let carrousel = () => {
 }
 carrousel()
 
-let customDictionary = {
-    "ingles": "English",
-    "español": "Spanish",
-    "frances": "French",
-    "portugues": "Portuguese",
-    "aleman": "German",
-    "indonesio": "Indonesian",
-    "hindi": "Hindi",
-    "tamil": "Tamil",
-    "videos populares": "Popular Videos",
-    "aprende todas estas tecnologias y muchas mas!": "Learn all these technologies and more!",
-    "vistas": "Views",
-    "horas": "Hours",
-    "hora": "Hour",
-    "anterior": "Previous",
-    "siguiente": "Next",
-    "buscar": "Search",
-    "categorias": "Categories",
-    "© codefree. todos los derechos reservados.": "© codefree. All rights reserved.",
-};
-
-async function translateText(text) {
-    if (customDictionary[text.toLowerCase()]) {
-        return customDictionary[text.toLowerCase()];
-    }
-    let translatedText = text.split(" ").map(word => {
-        return customDictionary[word.toLowerCase()] || word;
-    }).join(" ");
-    return translatedText;
-}
-
-document.getElementById('inputSearch')
-
-document.getElementById("translateBtn").addEventListener("click", async () => {
-    let elements = document.querySelectorAll(".traducible");
-    let texts = Array.from(elements).map(el => el.innerText);
+let translate = () => {
+    document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(async () => {
+            if (localStorage.getItem("language") == "en") {
+                document.getElementById("language").src = "../../img/english.png";
+                let elements = document.querySelectorAll(".traducible");
+                let texts = Array.from(elements).map(el => el.innerText);
+                
+                let translatedTexts = await Promise.all(
+                    texts.map(text => translateText(text, 'en'))
+                );
+                
+                elements.forEach((el, index) => {
+                    el.innerText = translatedTexts[index];
+                });
+            
+                document.getElementById('inputSearch').placeholder = 'Search for a video...';
     
-    let translatedTexts = await Promise.all(
-        texts.map(text => translateText(text))
-    );
-    
-    elements.forEach((el, index) => {
-        el.innerText = translatedTexts[index];
+                localStorage.setItem("language", "en");
+                isTranslated = true;
+            }
+        }, 15);
     });
 
-    document.getElementById('inputSearch').placeholder = 'Search for a video'
-});
+    let customDictionary = {
+        "Ingles": "English",
+        "Español": "Spanish",
+        "Frances": "French",
+        "Portugues": "Portuguese",
+        "Aleman": "German",
+        "Indonesio": "Indonesian",
+        "Hindi": "Hindi",
+        "Tamil": "Tamil",
+        "Videos populares": "Popular videos",
+        "Aprende todas estas tecnologias y muchas mas!": "Learn all these technologies and more!",
+        "Vistas": "Views",
+        "Horas": "Hours",
+        "Hora": "Hour",
+        "Anterior": "Previous",
+        "Siguiente": "Next",
+        "Buscar": "Search",
+        "Categorias": "Categories",
+        "© CodeFree. Todos los derechos reservados.": "© CodeFree. All rights reserved.",
+        "Otros lenguajes": "Other languages"
+    };
+    
+    let invertedDictionary = Object.fromEntries(
+        Object.entries(customDictionary).map(([key, value]) => [value, key])
+    );
+    
+    async function translateText(text, lang) {
+        if (lang == 'en') {
+            if (customDictionary[text]) {
+                return customDictionary[text];
+            }
+            let translatedText = text.split(" ").map(word => {
+                return customDictionary[word] || word;
+            }).join(" ");
+            return translatedText;
+        } else {
+            if (invertedDictionary[text]) {
+                return invertedDictionary[text];
+            }
+            let translatedText = text.split(" ").map(word => {
+                return invertedDictionary[word] || word;
+            }).join(" ");
+            return translatedText;
+        }
+    }
+    
+    let isTranslated = localStorage.getItem("language") == "en";
+    
+    document.getElementById("translateBtn").addEventListener("click", async () => {
+        if (!isTranslated) {
+            document.getElementById("language").src = "../../img/english.png"
+            let elements = document.querySelectorAll(".traducible");
+            let texts = Array.from(elements).map(el => el.innerText);
+            
+            let translatedTexts = await Promise.all(
+                texts.map(text => translateText(text, 'en'))
+            );
+            
+            elements.forEach((el, index) => {
+                el.innerText = translatedTexts[index];
+            });
+        
+            document.getElementById('inputSearch').placeholder = 'Search for a video...'
+
+            localStorage.setItem("language", "en");
+            isTranslated = true
+        } else {
+            document.getElementById("language").src = "../../img/es.png"     
+            let elements = document.querySelectorAll(".traducible");
+            let texts = Array.from(elements).map(el => el.innerText);
+            
+            let translatedTexts = await Promise.all(
+                texts.map(text => translateText(text, 'es'))
+            );
+            
+            elements.forEach((el, index) => {
+                el.innerText = translatedTexts[index];
+            });
+    
+            document.getElementById('inputSearch').placeholder = 'Busca un video...'
+
+            localStorage.setItem("language", "es");
+            isTranslated = false
+        }
+    });
+}
+translate()

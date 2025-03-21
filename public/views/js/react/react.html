@@ -19,7 +19,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+                    <a class="nav-link dropdown-toggle traducible" role="button" data-toggle="dropdown" aria-expanded="true">
                     Categorias
                     </a>
                     <div class="dropdown-menu">
@@ -35,29 +35,30 @@
                         <a class="dropdown-item" href="../sql">SQL</a>
                         <a class="dropdown-item" href="../typescript">TypeScript</a>
                         <a class="dropdown-item" href="../java">Java</a>
-                        <a class="dropdown-item" href="../otros">Otros Lenguajes</a>
+                        <a class="dropdown-item traducible" href="../otros">Otros Lenguajes</a>
                     </div>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" id="searchForm">
-                <input class="form-control mr-sm-2" type="search" placeholder="Buscador" aria-label="Search" id="inputSearch">
+                <input class="form-control mr-sm-2" type="search" placeholder="Busca un video..." aria-label="Search" id="inputSearch">
                 <button class="btn btn-outline-success my-2 my-sm-0 searchButton" id="search" type="submit">Buscar</button>
             </form>
+            <button id="translateBtn"><img src="../../img/es.png" alt="" class="language" id="language"></button>
         </div>
     </nav>
     <!-- Finaliza el navbar -->
 
     <!-- comienzan los populares -->
-    <button type="button" class="btn btn-light" id="views">Visualizaciones</button>
-    <button type="button" class="btn btn-light" id="duration">Duracion</button>
+    <button type="button" class="btn btn-light traducible" id="views">Visualizaciones</button>
+    <button type="button" class="btn btn-light traducible" id="duration">Duracion</button>
     <div class="btn-group dropright">
-        <button type="button" class="nav-link btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="nav-link btn btn-secondary dropdown-toggle traducible" data-toggle="dropdown" aria-expanded="false">
             Idioma
         </button>
         <div class="dropdown-menu" style="margin-top: 20px;">
-            <a class="dropdown-item smenu language" id="Ingles" href="#">Ingles</a>
-            <a class="dropdown-item smenu language" id="Español" href="#">Español</a>
-            <a class="dropdown-item smenu language" id="Hindi" href="#">Hindi</a>
+            <a class="dropdown-item smenu language traducible" id="Ingles" href="#">Ingles</a>
+            <a class="dropdown-item smenu language traducible" id="Español" href="#">Español</a>
+            <a class="dropdown-item smenu language traducible" id="Hindi" href="#">Hindi</a>
         </div>
     </div>
     <div>
@@ -79,7 +80,7 @@
                 <i class="fas fa-envelope"></i>
             </a>
         </div>
-        <p class="copy">© CodeFree. Todos los derechos reservados.</p>
+        <p class="copy traducible">© CodeFree. Todos los derechos reservados.</p>
     </footer>
     <!-- Finaliza el footer -->
 

@@ -340,6 +340,17 @@
     box-shadow: none !important;
 }
 
+.language {
+    width: 30px;
+    height: auto;
+}
+
+#translateBtn {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
 @media (max-width: 600px) {
     .footer {
       flex-direction: column;

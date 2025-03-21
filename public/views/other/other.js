@@ -15,9 +15,9 @@ function renderedCards(value) {
             <img src="${element.thumbnail}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${element.title}</h5>
-                <p class="card-text first">${element.language}</p>
+                <p class="card-text first traducible">${element.language}</p>
                 <p class="card-text">${element.channel}</p>
-                <p class="card-text">${element.views}M Vistas - ${element.duration}${element.duration > 1 ? ' Horas' : ' Hora'}</p>
+                <p class="card-text traducible">${element.views}M Vistas - ${element.duration}${element.duration > 1 ? ' Horas' : ' Hora'}</p>
                 ${element.languageIcon.map(icon => `<img class="img-language" src="${icon}" alt="">`).join(' ')}
             </div>
         </a>`
@@ -33,9 +33,9 @@ function renderByLanguage(value, language) {
                 <img src="${element.thumbnail}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${element.title}</h5>
-                    <p class="card-text first">${element.language}</p>
+                    <p class="card-text first traducible">${element.language}</p>
                     <p class="card-text">${element.channel}</p>
-                    <p class="card-text">${element.views}M Vistas - ${element.duration}${element.duration > 1 ? ' Horas' : ' Hora'}</p>
+                    <p class="card-text traducible">${element.views}M Vistas - ${element.duration}${element.duration > 1 ? ' Horas' : ' Hora'}</p>
                     ${element.languageIcon.map(icon => `<img class="img-language" src="${icon}" alt="">`).join(' ')}
                 </div>
             </a>`
@@ -144,3 +144,118 @@ let loadCourses = () => {
     });
 };
 loadCourses()
+
+let translate = () => {
+    document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(async () => {
+            if (localStorage.getItem("language") == "en") {
+                document.getElementById("language").src = "../../img/english.png";
+                let elements = document.querySelectorAll(".traducible");
+                let texts = Array.from(elements).map(el => el.innerText);
+                
+                let translatedTexts = await Promise.all(
+                    texts.map(text => translateText(text, 'en'))
+                );
+                
+                elements.forEach((el, index) => {
+                    el.innerText = translatedTexts[index];
+                });
+            
+                document.getElementById('inputSearch').placeholder = 'Search for a video...';
+    
+                localStorage.setItem("language", "en");
+                isTranslated = true;
+            }
+        }, 15);
+    });
+
+    let customDictionary = {
+        "Ingles": "English",
+        "Español": "Spanish",
+        "Frances": "French",
+        "Portugues": "Portuguese",
+        "Aleman": "German",
+        "Indonesio": "Indonesian",
+        "Hindi": "Hindi",
+        "Tamil": "Tamil",
+        "Videos populares": "Popular videos",
+        "Aprende todas estas tecnologias y muchas mas!": "Learn all these technologies and more!",
+        "Vistas": "Views",
+        "Horas": "Hours",
+        "Hora": "Hour",
+        "Anterior": "Previous",
+        "Siguiente": "Next",
+        "Buscar": "Search",
+        "Categorias": "Categories",
+        "© CodeFree. Todos los derechos reservados.": "© CodeFree. All rights reserved.",
+        "Otros lenguajes": "Other languages",
+        "Visualizaciones": "Visualizations",
+        "Duracion": "Duration",
+        "Idioma": "Language"
+    };
+    
+    let invertedDictionary = Object.fromEntries(
+        Object.entries(customDictionary).map(([key, value]) => [value, key])
+    );
+    
+    async function translateText(text, lang) {
+        if (lang == 'en') {
+            if (customDictionary[text]) {
+                return customDictionary[text];
+            }
+            let translatedText = text.split(" ").map(word => {
+                return customDictionary[word] || word;
+            }).join(" ");
+            return translatedText;
+        } else {
+            if (invertedDictionary[text]) {
+                return invertedDictionary[text];
+            }
+            let translatedText = text.split(" ").map(word => {
+                return invertedDictionary[word] || word;
+            }).join(" ");
+            return translatedText;
+        }
+    }
+    
+    let isTranslated = localStorage.getItem("language") == "en";
+    
+    document.getElementById("translateBtn").addEventListener("click", async () => {
+        if (!isTranslated) {
+            document.getElementById("language").src = "../../img/english.png"
+            let elements = document.querySelectorAll(".traducible");
+            let texts = Array.from(elements).map(el => el.innerText);
+            
+            let translatedTexts = await Promise.all(
+                texts.map(text => translateText(text, 'en'))
+            );
+            
+            elements.forEach((el, index) => {
+                el.innerText = translatedTexts[index];
+            });
+        
+            document.getElementById('inputSearch').placeholder = 'Search for a video...'
+
+            localStorage.setItem("language", "en");
+            isTranslated = true
+        } else {
+            document.getElementById("language").src = "../../img/es.png"     
+            let elements = document.querySelectorAll(".traducible");
+            let texts = Array.from(elements).map(el => el.innerText);
+            
+            let translatedTexts = await Promise.all(
+                texts.map(text => translateText(text, 'es'))
+            );
+            
+            elements.forEach((el, index) => {
+                el.innerText = translatedTexts[index];
+            });
+    
+            document.getElementById('inputSearch').placeholder = 'Busca un video...'
+
+            localStorage.setItem("language", "es");
+            isTranslated = false
+        }
+    });
+}
+translate()
