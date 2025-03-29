@@ -10,51 +10,6 @@ function getRandomObjects(value) {
 function renderedCards(value, index) {
     document.getElementById('videoCardsContainer').innerHTML = '';
 
-    document.addEventListener("click", () => {
-        setTimeout(async () => {
-            if (localStorage.getItem("language") == "en") {
-                let elements = document.querySelectorAll(".traducible");
-                let texts = Array.from(elements).map(el => el.innerText);
-                
-                let translatedTexts = await Promise.all(
-                    texts.map(text => translateText(text, 'en'))
-                );
-                
-                elements.forEach((el, index) => {
-                    el.innerText = translatedTexts[index];
-                });
-    
-                localStorage.setItem("language", "en");
-            }
-        }, 15);
-    });
-
-    let customDictionary = {
-        "Ingles": "English",
-        "Español": "Spanish",
-        "Frances": "French",
-        "Portugues": "Portuguese",
-        "Aleman": "German",
-        "Indonesio": "Indonesian",
-        "Hindi": "Hindi",
-        "Tamil": "Tamil",
-        "Vistas": "Views",
-        "Horas": "Hours",
-        "Hora": "Hour",
-    };
-    
-    async function translateText(text, lang) {
-        if (lang == 'en') {
-            if (customDictionary[text]) {
-                return customDictionary[text];
-            }
-            let translatedText = text.split(" ").map(word => {
-                return customDictionary[word] || word;
-            }).join(" ");
-            return translatedText;
-        }
-    }
-
     let slicedValue;
     if (index == 1) {
         slicedValue = value.slice(0, 25);
@@ -77,6 +32,69 @@ function renderedCards(value, index) {
                 </div>
             </a>`;
     });
+
+    document.addEventListener("click", () => {
+        setTimeout(async () => {
+            if (localStorage.getItem("language") == "en") {
+                let elements = document.querySelectorAll(".traducible");
+                let texts = Array.from(elements).map(el => el.innerText);
+                
+                let translatedTexts = await Promise.all(
+                    texts.map(text => translateText(text, 'en'))
+                );
+                
+                elements.forEach((el, index) => {
+                    el.innerText = translatedTexts[index];
+                });
+    
+                localStorage.setItem("language", "en");
+            }
+        }, 15);
+    });
+
+    let customDictionary = {
+        'Ingles': 'English',
+        "Español": "Spanish",
+        "Frances": "French",
+        "Portugues": "Portuguese",
+        "Aleman": "German",
+        "Indonesio": "Indonesian",
+        "Hindi": "Hindi",
+        "Tamil": "Tamil",
+        "Videos populares": "Popular videos",
+        "Aprende todas estas tecnologias y muchas mas!": "Learn all these technologies and more!",
+        "Vistas": "Views",
+        "Horas": "Hours",
+        "Hora": "Hour",
+        "Anterior": "Previous",
+        "Siguiente": "Next",
+        "Buscar": "Search",
+        "Categorias": "Categories",
+        "© CodeFree. Todos los derechos reservados.": "© CodeFree. All rights reserved.",
+        "Otros lenguajes": "Other languages",
+        "Idioma": "Language"
+    };
+    
+    async function translateText(text, lang) {
+        if (lang == 'en') {
+            if (customDictionary[text]) {
+                return customDictionary[text];
+            }
+            let translatedText = text.split(" ").map(word => {
+                return customDictionary[word] || word;
+            }).join(" ");
+            return translatedText;
+        } else {
+            if (invertedDictionary[text]) {
+                return invertedDictionary[text];
+            }
+            let translatedText = text.split(" ").map(word => {
+                return invertedDictionary[word] || word;
+            }).join(" ");
+            return translatedText;
+        }
+    }
+
 }
 
 function renderByLanguage(value, language) {
@@ -116,24 +134,41 @@ let loadCourses = () => {
         });
     
         let languages = document.querySelectorAll(".language");
-
         let activeLanguage = null;
-        let activeSort = null;
+        let activeSort = null
+
+        let translations = {
+            "Ingles": { es: "Ingles", en: "English" },
+            "Hindi": { es: "Hindi", en: "Hindi" },
+            "Español": { es: "Español", en: "Spanish" },
+            "Indonesio": { es: "Indonesio", en: "Indonesian" },
+            "Portugues": { es: "Portugues", en: "Portuguese" },
+            "Tamil": { es: "Tamil", en: "Tamil" },
+            "Aleman": { es: "Aleman", en: "German" },
+            "Frances": { es: "Frances", en: "French" },
+        };
 
         let updateLanguageFilter = (language) => {
+            let currentLanguage = localStorage.getItem("language")
+            let button = document.querySelector(`[data-language='${language}']`);
+            if (!button) return;
+        
             if (activeLanguage == language) {
                 activeLanguage = null;
-                document.getElementById(language).classList.remove('btnActive');
-                document.getElementById(language).textContent = language
+                button.classList.remove('btnActive');
+                button.textContent = translations[language][currentLanguage];
                 document.getElementById('nav-pagination').classList.remove('disabled0');
             } else {
                 if (activeLanguage) {
-                    document.getElementById(activeLanguage).textContent = activeLanguage
+                    let prevButton = document.querySelector(`[data-language='${activeLanguage}']`);
+                    if (prevButton) prevButton.textContent = translations[activeLanguage][currentLanguage];
                 }
                 languages.forEach(lang => lang.classList.remove('btnActive'));
                 activeLanguage = language;
-                document.getElementById(language).classList.add('btnActive');
-                document.getElementById(language).innerHTML = `${language} <i class="fa-solid fa-xmark"></i>`
+                button.classList.add('btnActive');
+                setTimeout(() => {
+                    button.innerHTML = `${translations[language][currentLanguage]} <i class="fa-solid fa-xmark"></i>`;
+                }, 200)
             }
         };
 
@@ -178,7 +213,7 @@ let loadCourses = () => {
 
         languages.forEach(language => {
             language.addEventListener("click", () => {
-                updateLanguageFilter(language.id);
+                updateLanguageFilter(language.dataset.language);
                 applyFilters();
             });
         });
@@ -186,14 +221,19 @@ let loadCourses = () => {
         document.getElementById('views').addEventListener('click', () => {
             if (activeSort == 'views') {
                 activeSort = null;
-                document.getElementById('views').classList.remove('btnActive');
-                document.getElementById('views').innerHTML = 'Visualizaciones'
+                document.getElementById('views').classList.remove('btnActive'); 
+                localStorage.getItem("language") == "en" ? document.getElementById('views').innerHTML = 'Visualizations' : document.getElementById('views').innerHTML = 'Visualizaciones'
             } else {
                 document.getElementById('duration').classList.remove('btnActive');
                 document.getElementById('views').classList.add('btnActive');
                 activeSort = 'views';
-                document.getElementById('views').innerHTML = 'Visualizaciones <i class="fa-solid fa-xmark"></i>'
-                document.getElementById('duration').innerHTML = 'Duracion'
+                if (localStorage.getItem("language") == "en") {
+                    document.getElementById('views').innerHTML = `Visualizations <i class="fa-solid fa-xmark"></i>`
+                    document.getElementById('duration').innerHTML = `Duration`
+                } else {
+                    document.getElementById('views').innerHTML = `Visualizaciones <i class="fa-solid fa-xmark"></i>`
+                    document.getElementById('duration').innerHTML = `Duracion`
+                }
             }
             applyFilters();
         });
@@ -202,13 +242,18 @@ let loadCourses = () => {
             if (activeSort == 'duration') {
                 activeSort = null;
                 document.getElementById('duration').classList.remove('btnActive');
-                document.getElementById('duration').innerHTML = 'Duracion'
+                localStorage.getItem("language") == "en" ? document.getElementById('duration').innerHTML = 'Duration' : document.getElementById('duration').innerHTML = 'Duracion'
             } else {
                 document.getElementById('views').classList.remove('btnActive');
                 document.getElementById('duration').classList.add('btnActive');
                 activeSort = 'duration';
-                document.getElementById('duration').innerHTML = 'Duracion <i class="fa-solid fa-xmark"></i>'
-                document.getElementById('views').innerHTML = 'Visualizaciones'
+                if (localStorage.getItem("language") == "en") {
+                    document.getElementById('duration').innerHTML = `Duration <i class="fa-solid fa-xmark"></i>`
+                    document.getElementById('views').innerHTML = `Visualizations`
+                } else {
+                    document.getElementById('duration').innerHTML = `Duracion <i class="fa-solid fa-xmark"></i>`
+                    document.getElementById('views').innerHTML = `Visualizaciones`
+                }
             }
             applyFilters();
         });
@@ -308,6 +353,8 @@ let translate = () => {
                 });
             
                 document.getElementById('inputSearch').placeholder = 'Search for a video...';
+                document.getElementById('views').innerHTML = 'Visualizations'
+                document.getElementById('duration').innerHTML = 'Duration'
     
                 localStorage.setItem("language", "en");
                 isTranslated = true;
@@ -335,8 +382,6 @@ let translate = () => {
         "Categorias": "Categories",
         "© CodeFree. Todos los derechos reservados.": "© CodeFree. All rights reserved.",
         "Otros lenguajes": "Other languages",
-        "Visualizaciones": "Visualizations",
-        "Duracion": "Duration",
         "Idioma": "Language"
     };
     
@@ -381,7 +426,9 @@ let translate = () => {
             });
         
             document.getElementById('inputSearch').placeholder = 'Search for a video...'
-
+            document.getElementById('views').innerHTML = 'Visualizations'
+            document.getElementById('duration').innerHTML = 'Duration'
+    
             localStorage.setItem("language", "en");
             isTranslated = true
         } else {
@@ -398,6 +445,8 @@ let translate = () => {
             });
     
             document.getElementById('inputSearch').placeholder = 'Busca un video...'
+            document.getElementById('views').innerHTML = 'Visualizaciones'
+            document.getElementById('duration').innerHTML = 'Duracion'
 
             localStorage.setItem("language", "es");
             isTranslated = false

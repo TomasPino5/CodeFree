@@ -41,14 +41,14 @@ let loadCourses = () => {
                 });
             
                 if (filteredVideos.length > 0) {
-                    document.getElementById('result').innerHTML = `Resultados encontrados para "${queryParam}"`
+                    localStorage.getItem("language") == 'es' ? document.getElementById('resultQuery').innerHTML = ` "${queryParam}"` : document.getElementById('resultQuery').innerHTML = ` "${queryParam}"`;
                     renderedCards(filteredVideos);
                 } else {
-                    document.getElementById('result').innerHTML = 'Lo sentimos, no se ha encontrado ningún video';
+                    localStorage.getItem("language") == 'es' ? document.getElementById('spanSearch').innerHTML = 'Lo sentimos, no se ha encontrado ningún video' : document.getElementById('spanSearch').innerHTML = 'Sorry, no video found.'
                 }
-
-                document.getElementById('inputSearch').value = queryParam;
             }
+
+            document.getElementById('inputSearch').value = queryParam;
 
             document.getElementById('inputSearch').addEventListener('input', (event) => {
                 let value = event.target.value
@@ -68,7 +68,6 @@ let loadCourses = () => {
             });
         });
 };
-
 loadCourses();
 
 let translate = () => {
@@ -92,7 +91,7 @@ let translate = () => {
                 localStorage.setItem("language", "en");
                 isTranslated = true;
             }
-        }, 15);
+        }, 30);
     });
 
     let customDictionary = {
@@ -117,7 +116,9 @@ let translate = () => {
         "Otros lenguajes": "Other languages",
         "Visualizaciones": "Visualizations",
         "Duracion": "Duration",
-        "Idioma": "Language"
+        "Idioma": "Language",
+        "Resultados encontrados para": "Results found for",
+        "Lo sentimos, no se ha encontrado ningún video": "Sorry, no video found"
     };
     
     let invertedDictionary = Object.fromEntries(
