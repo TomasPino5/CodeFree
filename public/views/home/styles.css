@@ -27,7 +27,7 @@
 .popularsTitle {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .nav-item.dropdown:hover > .dropdown-menu {
@@ -226,14 +226,12 @@
 
 .page-link {
     color: #464545;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .page-link:hover {
     color: #464545;
-}
-
-.page-link.active {
-    background-color: #e9e6e6;
 }
 
 .btn {
@@ -343,12 +341,41 @@
 .language {
     width: 30px;
     height: auto;
+    margin-left: 30px;
 }
 
 #translateBtn {
     background: none;
     border: none;
     padding: 0;
+}
+
+#nav-pagination {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    margin-top: 35px;
+}
+
+#nav-pagination .pagination .page-link {
+    padding: 0.7rem 0.95rem; 
+}
+
+.dropdown-item:active {
+    background-color: rgb(236, 236, 236);
+    color: black;
+}
+
+.annoyingLine:hover {
+    color: rgb(46, 41, 41);;
+}
+
+.navbar-brand {
+    border: none;
+}
+
+.active {
+    background-color: #ebe8e8;
 }
 
 @media (max-width: 600px) {
