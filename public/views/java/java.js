@@ -92,7 +92,7 @@ function renderByLanguage(value, language) {
     value.forEach(element => {
         if (element.language == language) {
             document.getElementById('videoCardsContainer').innerHTML += `
-            <a class="cardVideos" style="width: 10rem; text-decoration: none" href="${element.link}" target="_blank">
+            <a class="cardVideos" style="text-decoration: none" href="${element.link}" target="_blank">
                 <img src="${element.thumbnail}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${element.title}</h5>

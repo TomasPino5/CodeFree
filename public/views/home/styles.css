@@ -1,3 +1,7 @@
+.header {
+    margin-top: 60px;
+}
+
 .img-container {
     display: grid;
     grid-template-columns: repeat(16, 1fr); 
@@ -62,20 +66,27 @@
 }
 
 #videoCardsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px; 
-    justify-content: space-between; 
-    margin: 60px 50px 0 40px;
+    display: grid;
+    grid-template-columns: repeat(5, 270px);
+    gap: 30px;
+    margin: 40px 0 0 40px;
+    justify-content: start;
 }
 
 .cardVideos {
-    flex: 1 1 calc(20% - 30px);
+    width: 260px;
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
     color: black;
+    transition: transform 1s ease, box-shadow 0.3s ease;
+}
+
+.cardVideos:hover {
+    color: black;
+    transform: scale(1.01);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
 }
 
 .img-language {
@@ -83,9 +94,6 @@
     width: auto;
 }
 
-.cardVideos:hover {
-    color: black;
-}
 
 .first {
     margin-top: -10px;
@@ -114,13 +122,16 @@
 
 .navbar {
     z-index: 2;
+    position: fixed;
+    width: 100%;
+    top: 0;
 }
 
 .carrousel-container {
     display: flex;
     justify-content: center; 
     align-items: center;
-    margin: 200px 0px 350px 0px;
+    margin: 250px 0px 350px 0px;
 }
 
 .carrousel-container-div {
@@ -338,7 +349,7 @@
     box-shadow: none !important;
 }
 
-.language {
+.idiom {
     width: 30px;
     height: auto;
     margin-left: 30px;
@@ -376,6 +387,12 @@
 
 .active {
     background-color: #ebe8e8;
+}
+
+.searchText {
+    display: flex;
+    justify-content: left;
+    margin: 100px 0 0 38px;
 }
 
 @media (max-width: 600px) {

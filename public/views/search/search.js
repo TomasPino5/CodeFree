@@ -10,7 +10,7 @@ function renderedCards(value) {
     document.getElementById('videoCardsContainer').innerHTML = ''
     value.forEach(element => {
         document.getElementById('videoCardsContainer').innerHTML += `
-        <a class="cardVideos" style="width: 10rem; text-decoration: none" href="${element.link}" target="_blank">
+        <a class="cardVideos" style="text-decoration: none" href="${element.link}" target="_blank">
             <img src="${element.thumbnail}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${element.title}</h5>
@@ -41,7 +41,7 @@ let loadCourses = () => {
                 });
             
                 if (filteredVideos.length > 0) {
-                    localStorage.getItem("language") == 'es' ? document.getElementById('resultQuery').innerHTML = ` "${queryParam}"` : document.getElementById('resultQuery').innerHTML = ` "${queryParam}"`;
+                    localStorage.getItem("language") == 'es' ? document.getElementById('resultQuery').innerHTML = ` "${urlParams.get('query')}"` : document.getElementById('resultQuery').innerHTML = ` "${urlParams.get('query')}"`;
                     renderedCards(filteredVideos);
                 } else {
                     localStorage.getItem("language") == 'es' ? document.getElementById('spanSearch').innerHTML = 'Lo sentimos, no se ha encontrado ningún video' : document.getElementById('spanSearch').innerHTML = 'Sorry, no video found.'

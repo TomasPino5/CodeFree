@@ -43,14 +43,16 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Busca un video..." aria-label="Search" id="inputSearch">
                 <button class="btn btn-outline-success my-2 my-sm-0 searchButton traducible" id="search" type="submit">Buscar</button>
             </form>
-            <button id="translateBtn"><img src="../../img/es.png" alt="" class="language" id="language"></button>
+            <button id="translateBtn"><img src="../../img/es.png" alt="" class="idiom" id="language"></button>
         </div>
     </nav>
     <!-- Finaliza el navbar -->
 
     <!-- comienzan los populares -->
-    <div>
-        <span id="spanSearch" class="traducible">Resultados encontrados para</span><span id="resultQuery"></span>
+    <div class="header">
+        <div class="searchText">
+            <h1 id="spanSearch" class="traducible">Resultados encontrados para<span id="resultQuery"></span>:</h1>
+        </div>
         <div id="videoCardsContainer"></div>
     </div>
     <!-- Finalizan los populares -->
@@ -59,10 +61,10 @@
     <footer class="footer">
         <p class="footer-brand"><img src="views/utility/footerLogo.png" alt="" class="logo0"> CodeFree</p>
         <div class="social-media">
-            <a href="https://www.linkedin.com/in/tomas-pino-001161285/" target="_blank">
+            <a href="https://www.linkedin.com/in/tomas-pino-001161285/" target="_blank" class="annoyingLine">
                 <i class="fab fa-linkedin"></i>
             </a>
-            <a href="https://github.com/TomasPino5" target="_blank">
+            <a href="https://github.com/TomasPino5" target="_blank" class="annoyingLine">
                 <i class="fab fa-github"></i>
             </a>
             <a href="mailto:tomaspino48@gmail.com">
