@@ -22,6 +22,8 @@ function renderedCards(value, index) {
                 elements.forEach((el, index) => {
                     el.innerText = translatedTexts[index];
                 });
+
+                carrousel("en");
     
                 localStorage.setItem("language", "en");
             }
@@ -183,37 +185,49 @@ let loadCourses = () => {
 }
 loadCourses()
   
+let carouselInterval;
+let carouselIndex = 0;
 
-let carrousel = () => {
-    let imgOne = document.getElementById('img1')
-    let imgTwo = document.getElementById('img2')
-    let imgThree = document.getElementById('img3')
-    let images = [imgOne, imgTwo, imgThree]
-    
-    let index = 0;
+let carrousel = (lang) => {
+    let img1 = document.getElementById('img1').innerHTML = `<img src="" alt="" class="carrousel-container-div-img"></img>`;
+    let img2 = document.getElementById('img2').innerHTML = `<img src="" alt="" class="carrousel-container-div-img"></img>`;
+    let img3 = document.getElementById('img3').innerHTML = `<img src="" alt="" class="carrousel-container-div-img"></img>`;
+    if (lang == "en") {
+        img1 = document.getElementById('img1').innerHTML = `<img src="../img/carrousel1en.jpg" alt="" class="carrousel-container-div-img" oncontextmenu="return false;" draggable="false"></img>`
+        img2 = document.getElementById('img2').innerHTML = `<img src="../img/carrousel2en.jpg" alt="" class="carrousel-container-div-img" oncontextmenu="return false;" draggable="false"></img>`
+        img3 = document.getElementById('img3').innerHTML = `<img src="../img/carrousel3en.jpg" alt="" class="carrousel-container-div-img" oncontextmenu="return false;" draggable="false"></img>`
+    } else {
+        img1 = document.getElementById('img1').innerHTML = `<img src="../img/carrousel1.jpg" alt="" class="carrousel-container-div-img" oncontextmenu="return false;" draggable="false"></img>`
+        img2 = document.getElementById('img2').innerHTML = `<img src="../img/carrousel2.jpg" alt="" class="carrousel-container-div-img" oncontextmenu="return false;" draggable="false"></img>`
+        img3 = document.getElementById('img3').innerHTML = `<img src="../img/carrousel3.jpg" alt="" class="carrousel-container-div-img" oncontextmenu="return false;" draggable="false"></img>`
+    }
+    let images = [document.getElementById('img1'), document.getElementById('img2'), document.getElementById('img3')];
 
-    images[0].classList.add('active');
+    images.forEach(image => image.classList.remove('active'));
+    images[carouselIndex].classList.add('active');
 
-    setInterval(() => {
+    clearInterval(carouselInterval);
+
+    carouselInterval = setInterval(() => {
         images.forEach(image => image.classList.remove('active'));
-        images[index].classList.add('active');
-        index = (index + 1) % images.length;
-    }, 8000)
+        carouselIndex = (carouselIndex + 1) % images.length;
+        images[carouselIndex].classList.add('active');
+    }, 6000);
 
-    let leftButton = document.getElementById('btnPrevious')
-    let rightButton = document.getElementById('btnNext')
+    let leftButton = document.getElementById('btnPrevious');
+    let rightButton = document.getElementById('btnNext');
 
-    leftButton.addEventListener('click', () => {
-        index = (index - 1 + images.length) % images.length;
+    leftButton.onclick = () => {
         images.forEach(image => image.classList.remove('active'));
-        images[index].classList.add('active');
-    })
+        carouselIndex = (carouselIndex - 1 + images.length) % images.length;
+        images[carouselIndex].classList.add('active');
+    };
 
-    rightButton.addEventListener('click', () => {
-        index = (index + 1) % images.length;
+    rightButton.onclick = () => {
         images.forEach(image => image.classList.remove('active'));
-        images[index].classList.add('active');
-    })
+        carouselIndex = (carouselIndex + 1) % images.length;
+        images[carouselIndex].classList.add('active');
+    };
 }
 carrousel()
 
@@ -234,6 +248,8 @@ let translate = () => {
                 });
             
                 document.getElementById('inputSearch').placeholder = 'Search for a video...';
+
+                carrousel("en");
     
                 localStorage.setItem("language", "en");
                 isTranslated = true;
@@ -305,6 +321,8 @@ let translate = () => {
         
             document.getElementById('inputSearch').placeholder = 'Search for a video...'
 
+            carrousel("en");
+
             localStorage.setItem("language", "en");
             isTranslated = true
         } else {
@@ -321,6 +339,8 @@ let translate = () => {
             });
     
             document.getElementById('inputSearch').placeholder = 'Busca un video...'
+
+            carrousel("es");
 
             localStorage.setItem("language", "es");
             isTranslated = false

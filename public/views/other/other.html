@@ -17,10 +17,12 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle traducible" role="button" data-toggle="dropdown" aria-expanded="true">
-                    Categorias
+            <ul class="navbar-nav mr-auto order-1 order-lg-1">
+                                                                    
+                <li class="nav-item dropdown categoryitem0">
+                    <a class="nav-link dropdown-toggle traducible" role="button" data-toggle="dropdown"
+                        aria-expanded="true">
+                        Categorias
                     </a>
                     <div class="dropdown-menu">
                         <div class="dropdown-submenu dropright">
@@ -30,40 +32,78 @@
                                 <li><a class="dropdown-item smenu" href="javascript/react">React</a></li>
                             </ul>
                         </div>
-                        <a class="dropdown-item" href="htmlcss">HTML/CSS</a>
+                        <a class="dropdown-item jsHidden" href="javascript">JavaScript</a>
+                        <a class="dropdown-item btnActive" href="inicio">HTML/CSS</a>
                         <a class="dropdown-item" href="python">Python</a>
                         <a class="dropdown-item" href="sql">SQL</a>
                         <a class="dropdown-item" href="typescript">TypeScript</a>
                         <a class="dropdown-item" href="java">Java</a>
-                        <a class="dropdown-item btnActive traducible" href="../">Otros Lenguajes <i class="fa-solid fa-xmark"></i></a>
+                        <a class="dropdown-item traducible btnActive" href="otros">Otros lenguajes <i class="fa-solid fa-xmark"></i></a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropright categoryitem1">
+                    <a class="nav-link dropdown-toggle traducible" role="button" data-toggle="dropdown"
+                        aria-expanded="true">
+                        Categorias
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-submenu dropright">
+                            <a class="dropdown-item dropdown-toggle" href="javascript">JavaScript</a>
+                            <ul class="dropdown-menu" style="margin-left: 5px;">
+                                <li><a class="dropdown-item smenu" href="javascript/node.js">Node.js</a></li>
+                                <li><a class="dropdown-item smenu" href="javascript/react">React</a></li>
+                            </ul>
+                        </div>
+                        <a class="dropdown-item jsHidden" href="javascript">JavaScript</a>
+                        <a class="dropdown-item" href="inicio">HTML/CSS</a>
+                        <a class="dropdown-item" href="python">Python</a>
+                        <a class="dropdown-item" href="sql">SQL</a>
+                        <a class="dropdown-item" href="typescript">TypeScript</a>
+                        <a class="dropdown-item" href="java">Java</a>
+                        <a class="dropdown-item traducible btnActive" href="otros">Otros lenguajes <i class="fa-solid fa-xmark"></i></a>
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" id="searchForm">
-                <input class="form-control mr-sm-2" type="search" placeholder="Busca un video..." aria-label="Search" id="inputSearch">
-                <button class="btn btn-outline-success my-2 my-sm-0 searchButton traducible" id="search" type="submit">Buscar</button>
-            </form>
-            <button id="translateBtn"><img src="../../img/es.png" alt="" class="idiom" id="language"></button>
+            <button id="translateBtn" class="order-2 order-lg-3 item">
+                    <img src="../../img/es.png" alt="" class="idiom" id="language">
+                </button>
+                <form class="form-inline my-2 my-lg-0 order-3 order-lg-2 item" id="searchForm">
+                    <input class="form-control mr-sm-2 traducible" type="search" placeholder="Busca un video..." aria-label="Search" id="inputSearch">
+                    <button class="btn btn-outline-success my-2 my-sm-0 searchButton traducible" id="search" type="submit">Buscar</button>
+                </form>
         </div>
     </nav>
     <!-- Finaliza el navbar -->
 
     <!-- comienzan los populares -->
-     <div class="header">
-    <button type="button" class="btn btn-light" id="views">Visualizaciones</button>
-    <button type="button" class="btn btn-light" id="duration">Duracion</button>
-    <div class="btn-group dropright">
-        <button type="button" class="nav-link btn btn-secondary dropdown-toggle traducible" aria-expanded="false">
-            Idioma
-        </button>
-        <div class="dropdown-menu" style="margin-top: 20px;">
-            <a class="dropdown-item smenu language traducible" data-language="Ingles" href="#">Ingles</a>
-            <a class="dropdown-item smenu language traducible" data-language="Hindi" href="#">Hindi</a>
+        <div class="header">
+        <button type="button" class="btn btn-light" id="views">Visualizaciones</button>
+        <button type="button" class="btn btn-light" id="duration">Duracion</button>
+
+        <div class="btn-group dropright idiomsitem0">
+            <button type="button" class="nav-link btn btn-secondary dropdown-toggle traducible" aria-expanded="false">
+                Idioma
+            </button>
+            <div class="dropdown-menu" style="margin-top: 20px;">
+                <a class="dropdown-item smenu language traducible" data-language="Ingles" href="#">Ingles</a>
+                <a class="dropdown-item smenu language traducible" data-language="Hindi" href="#">Hindi</a>
+            </div>
         </div>
-    </div>
-    <div>
-        <div id="videoCardsContainer"></div>
-    </div>
+
+        <div class="btn-group dropdown idiomsitem1">
+            <button type="button" class="nav-link btn btn-secondary dropdown-toggle traducible" aria-expanded="false" data-toggle="dropdown">
+                Idioma
+            </button>
+            <div class="dropdown-menu" style="margin-top: 5px; margin-right: 50px;">
+                <a class="dropdown-item smenu language traducible" data-language="Ingles" href="#">Ingles</a>
+                <a class="dropdown-item smenu language traducible" data-language="Hindi" href="#">Hindi</a>
+            </div>
+        </div>
+
+        <div>
+            <div id="videoCardsContainer"></div>
+        </div>
     </div>
     <!-- Finalizan los populares -->
 

@@ -1,70 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../views/home/styles.css">
     <link rel="icon" href="views/utility/logo.png" type="image/x-icon">
     <title>CodeFree</title>
 </head>
+
 <body>
     <!-- inicia el navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="../../"><img src="views/utility/logo.png" alt="" class="logo"> CodeFree</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle traducible" role="button" data-toggle="dropdown" aria-expanded="true">
-                    Categorias
+            <ul class="navbar-nav mr-auto order-1 order-lg-1">
+
+                <li class="nav-item dropdown categoryitem0">
+                    <a class="nav-link dropdown-toggle traducible" role="button" data-toggle="dropdown"
+                        aria-expanded="true">
+                        Categorias
                     </a>
                     <div class="dropdown-menu">
                         <div class="dropdown-submenu dropright">
-                            <a class="dropdown-item dropdown-toggle" href="../javascript">JavaScript</a>
+                            <a class="dropdown-item dropdown-toggle" href="javascript">JavaScript</a>
                             <ul class="dropdown-menu" style="margin-left: 5px;">
-                                <li><a class="dropdown-item smenu btnActive" href="../">Node.js <i class="fa-solid fa-xmark"></i></a></li>
-                                <li><a class="dropdown-item smenu" href="../javascript/react">React</a></li>
+                                <li><a class="dropdown-item smenu btnActive" href="javascript/node.js">Node.js <i
+                                            class="fa-solid fa-xmark"></i></a></li>
+                                <li><a class="dropdown-item smenu" href="javascript/react">React</a></li>
                             </ul>
                         </div>
-                        <a class="dropdown-item" href="../htmlcss">HTML/CSS</a>
-                        <a class="dropdown-item" href="../python">Python</a>
-                        <a class="dropdown-item" href="../sql">SQL</a>
-                        <a class="dropdown-item" href="../typescript">TypeScript</a>
-                        <a class="dropdown-item" href="../java">Java</a>
-                        <a class="dropdown-item traducible" href="../otros">Otros Lenguajes</a>
+                        <a class="dropdown-item jsHidden" href="javascript">JavaScript</a>
+                        <a class="dropdown-item btnActive" href="inicio">HTML/CSS</a>
+                        <a class="dropdown-item" href="python">Python</a>
+                        <a class="dropdown-item" href="sql">SQL</a>
+                        <a class="dropdown-item" href="typescript">TypeScript</a>
+                        <a class="dropdown-item" href="java">Java</a>
+                        <a class="dropdown-item traducible" href="otros">Otros lenguajes</a>
                     </div>
                 </li>
+
+                <li class="nav-item dropright categoryitem1">
+                    <a class="nav-link dropdown-toggle traducible" role="button" data-toggle="dropdown"
+                        aria-expanded="true">
+                        Categorias
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-submenu dropright">
+                            <a class="dropdown-item dropdown-toggle" href="javascript">JavaScript</a>
+                            <ul class="dropdown-menu" style="margin-left: 5px;">
+                                <li><a class="dropdown-item smenu btnActive" href="javascript/node.js">Node.js <i
+                                            class="fa-solid fa-xmark"></i></a></li>
+                                <li><a class="dropdown-item smenu" href="javascript/react">React</a></li>
+                            </ul>
+                        </div>
+                        <a class="dropdown-item jsHidden" href="javascript">JavaScript</a>
+                        <a class="dropdown-item" href="inicio">HTML/CSS</a>
+                        <a class="dropdown-item" href="python">Python</a>
+                        <a class="dropdown-item" href="sql">SQL</a>
+                        <a class="dropdown-item" href="typescript">TypeScript</a>
+                        <a class="dropdown-item" href="java">Java</a>
+                        <a class="dropdown-item traducible" href="otros">Otros lenguajes</a>
+                    </div>
+                </li>
+
             </ul>
-            <form class="form-inline my-2 my-lg-0" id="searchForm">
-                <input class="form-control mr-sm-2" type="search" placeholder="Busca un video..." aria-label="Search" id="inputSearch">
-                <button class="btn btn-outline-success my-2 my-sm-0 searchButton traducible" id="search" type="submit">Buscar</button>
+            <button id="translateBtn" class="order-2 order-lg-3 item">
+                <img src="../../img/es.png" alt="" class="idiom" id="language">
+            </button>
+            <form class="form-inline my-2 my-lg-0 order-3 order-lg-2 item" id="searchForm">
+                <input class="form-control mr-sm-2 traducible" type="search" placeholder="Busca un video..."
+                    aria-label="Search" id="inputSearch">
+                <button class="btn btn-outline-success my-2 my-sm-0 searchButton traducible" id="search"
+                    type="submit">Buscar</button>
             </form>
-            <button id="translateBtn"><img src="../../img/es.png" alt="" class="idiom" id="language"></button>
         </div>
     </nav>
     <!-- Finaliza el navbar -->
 
     <!-- comienzan los populares -->
-     <div class="header">
-    <button type="button" class="btn btn-light" id="views">Visualizaciones</button>
-    <button type="button" class="btn btn-light" id="duration">Duracion</button>
-    <div class="btn-group dropright">
-        <button type="button" class="nav-link btn btn-secondary dropdown-toggle traducible" aria-expanded="false">
-            Idioma
-        </button>
-        <div class="dropdown-menu" style="margin-top: 20px;">
-            <a class="dropdown-item smenu language traducible" data-language="Ingles" href="#">Ingles</a>
-            <a class="dropdown-item smenu language traducible" data-language="Hindi" href="#">Hindi</a>
+    <div class="header">
+        <button type="button" class="btn btn-light" id="views">Visualizaciones</button>
+        <button type="button" class="btn btn-light" id="duration">Duracion</button>
+
+        <div class="btn-group dropright idiomsitem0">
+            <button type="button" class="nav-link btn btn-secondary dropdown-toggle traducible" aria-expanded="false">
+                Idioma
+            </button>
+            <div class="dropdown-menu" style="margin-top: 20px;">
+                <a class="dropdown-item smenu language traducible" data-language="Ingles" href="#">Ingles</a>
+                <a class="dropdown-item smenu language traducible" data-language="Hindi" href="#">Hindi</a>
+            </div>
+        </div>
+
+        <div class="btn-group dropdown idiomsitem1">
+            <button type="button" class="nav-link btn btn-secondary dropdown-toggle traducible" aria-expanded="false"
+                data-toggle="dropdown">
+                Idioma
+            </button>
+            <div class="dropdown-menu" style="margin-top: 5px; margin-right: 50px;">
+                <a class="dropdown-item smenu language traducible" data-language="Ingles" href="#">Ingles</a>
+                <a class="dropdown-item smenu language traducible" data-language="Hindi" href="#">Hindi</a>
+            </div>
+        </div>
+
+        <div>
+            <div id="videoCardsContainer"></div>
         </div>
     </div>
-    <div>
-        <div id="videoCardsContainer"></div>
-    </div>
-     </div>
     <!-- Finalizan los populares -->
 
     <!-- Comienza el footer -->
@@ -86,8 +136,13 @@
     <!-- Finaliza el footer -->
 
     <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
     <script src="../views/js/node/node.js"></script>
 </body>
+
 </html>

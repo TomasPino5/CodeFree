@@ -17,8 +17,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
+                <ul class="navbar-nav mr-auto order-1 order-lg-1">
+
+                    <li class="nav-item dropdown categoryitem0">
                         <a class="nav-link dropdown-toggle traducible" role="button" data-toggle="dropdown" aria-expanded="true">
                         Categorias
                         </a>
@@ -30,6 +31,7 @@
                                     <li><a class="dropdown-item smenu" href="javascript/react">React</a></li>
                                 </ul>
                             </div>
+                            <a class="dropdown-item jsHidden" href="javascript">JavaScript</a>
                             <a class="dropdown-item" href="htmlcss">HTML/CSS</a>
                             <a class="dropdown-item" href="python">Python</a>
                             <a class="dropdown-item" href="sql">SQL</a>
@@ -38,12 +40,37 @@
                             <a class="dropdown-item traducible" href="otros">Otros lenguajes</a>
                         </div>
                     </li>
+
+                    <li class="nav-item dropright categoryitem1">
+                        <a class="nav-link dropdown-toggle traducible" role="button" data-toggle="dropdown" aria-expanded="true">
+                        Categorias
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-submenu dropright">
+                                <a class="dropdown-item dropdown-toggle" href="javascript">JavaScript</a>
+                                <ul class="dropdown-menu" style="margin-left: 5px;">
+                                    <li><a class="dropdown-item smenu" href="javascript/node.js">Node.js</a></li>
+                                    <li><a class="dropdown-item smenu" href="javascript/react">React</a></li>
+                                </ul>
+                            </div>
+                            <a class="dropdown-item jsHidden" href="javascript">JavaScript</a>
+                            <a class="dropdown-item" href="htmlcss">HTML/CSS</a>
+                            <a class="dropdown-item" href="python">Python</a>
+                            <a class="dropdown-item" href="sql">SQL</a>
+                            <a class="dropdown-item" href="typescript">TypeScript</a>
+                            <a class="dropdown-item" href="java">Java</a>
+                            <a class="dropdown-item traducible" href="otros">Otros lenguajes</a>
+                        </div>
+                    </li>
+
                 </ul>
-                <form class="form-inline my-2 my-lg-0" id="searchForm">
+                <button id="translateBtn" class="order-2 order-lg-3">
+                    <img src="../../img/es.png" alt="" class="idiom" id="language">
+                </button>
+                <form class="form-inline my-2 my-lg-0 order-3 order-lg-2" id="searchForm">
                     <input class="form-control mr-sm-2 traducible" type="search" placeholder="Busca un video..." aria-label="Search" id="inputSearch">
                     <button class="btn btn-outline-success my-2 my-sm-0 searchButton traducible" id="search" type="submit">Buscar</button>
                 </form>
-                <button id="translateBtn"><img src="../../img/es.png" alt="" class="idiom" id="language"></button>
             </div>
         </nav>
         <!-- Finaliza el navbar -->
@@ -51,13 +78,13 @@
         <!-- inicia el carrousel -->
         <div class="carrousel-container">
             <div class="carrousel-container-div" id="img1">
-                <img src="../img/carrousel1.jpg" alt="" class="carrousel-container-div-img">
+                <!-- Se inserta la imagen desde el js-->
             </div>
             <div class="carrousel-container-div" id="img2">
-                <img src="../img/carrousel2.jpg" alt="" class="carrousel-container-div-img">
+                <!-- Se inserta la imagen desde el js-->
             </div>
             <div class="carrousel-container-div" id="img3">
-                <img src="../img/carrousel3.jpg" alt="" class="carrousel-container-div-img">
+                <!-- Se inserta la imagen desde el js-->
             </div>
             <button class="btn-left" id="btnPrevious"><</button>
             <button class="btn-right" id="btnNext">></button>
