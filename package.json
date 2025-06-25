@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "@aws-sdk/client-translate": "^3.758.0",
-    "express": "^4.21.1",
-    "nodemon": "^3.1.9"
+    "@aws-sdk/client-translate": "^3.835.0",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
   }
 }
