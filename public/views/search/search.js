@@ -91,7 +91,7 @@ let translate = () => {
                 localStorage.setItem("language", "en");
                 isTranslated = true;
             }
-        }, 30);
+        }, 500);
     });
 
     let customDictionary = {
