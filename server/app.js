@@ -55,6 +55,6 @@ app.get('/search', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/views/search/search.html'));
 });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Example app listening on port http://localhost:${port}`)
 })
