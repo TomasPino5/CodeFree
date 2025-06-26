@@ -49,7 +49,7 @@ function renderedCards(value, index) {
     
                 localStorage.setItem("language", "en");
             }
-        }, 1500);
+        }, 15);
     });
 
     let customDictionary = {
