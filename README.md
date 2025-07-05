@@ -6,7 +6,7 @@ Visitar el siguiente link: <a href="https://codefree.site/inicio" target="_blank
 
 Este proyecto es una plataforma web diseñada para ofrecer cursos gratuitos de programación y tecnología. Su objetivo es brindar acceso a contenidos educativos de calidad para todas las personas interesadas en aprender, sin necesidad de registrarse ni pagar.
 
-Funciones destacadas:
+## **⚙️ FUNCIONES DESTACADAS**
 
 . Traduccion de ingles/español con manejo de local storage.<br>
 . Carrousel de imagenes dinamico.<br>
