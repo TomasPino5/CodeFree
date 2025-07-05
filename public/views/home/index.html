@@ -1,28 +1,36 @@
 <!doctype html>
 <html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="views/home/styles.css">
-        <link rel="icon" href="views/utility/logo.png" type="image/x-icon">
-        <title>CodeFree</title>
-    </head>
-    <body>
-        <div class="main-content">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="views/home/styles.css">
+    <link rel="icon" href="views/utility/logo.png" type="image/x-icon">
+    <title>CodeFree</title>
+</head>
+
+<body>
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+    <div class="main-content">
         <!-- inicia el navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="inicio"><img src="views/utility/logo.png" alt="" class="logo"> CodeFree</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto order-1 order-lg-1">
 
                     <li class="nav-item dropdown categoryitem0">
-                        <a class="nav-link dropdown-toggle traducible" role="button" data-toggle="dropdown" aria-expanded="true">
-                        Categorias
+                        <a class="nav-link dropdown-toggle traducible" role="button" data-toggle="dropdown"
+                            aria-expanded="true">
+                            Categorias
                         </a>
                         <div class="dropdown-menu">
                             <div class="dropdown-submenu dropright">
@@ -43,8 +51,9 @@
                     </li>
 
                     <li class="nav-item dropright categoryitem1">
-                        <a class="nav-link dropdown-toggle traducible" role="button" data-toggle="dropdown" aria-expanded="true">
-                        Categorias
+                        <a class="nav-link dropdown-toggle traducible" role="button" data-toggle="dropdown"
+                            aria-expanded="true">
+                            Categorias
                         </a>
                         <div class="dropdown-menu">
                             <div class="dropdown-submenu dropright">
@@ -69,8 +78,10 @@
                     <img src="../../img/es.png" alt="" class="idiom" id="language">
                 </button>
                 <form class="form-inline my-2 my-lg-0 order-3 order-lg-2" id="searchForm">
-                    <input class="form-control mr-sm-2 traducible" type="search" placeholder="Busca un video..." aria-label="Search" id="inputSearch">
-                    <button class="btn btn-outline-success my-2 my-sm-0 searchButton traducible" id="search" type="submit">Buscar</button>
+                    <input class="form-control mr-sm-2 traducible" type="search" placeholder="Busca un video..."
+                        aria-label="Search" id="inputSearch">
+                    <button class="btn btn-outline-success my-2 my-sm-0 searchButton traducible" id="search"
+                        type="submit">Buscar</button>
                 </form>
             </div>
         </nav>
@@ -102,13 +113,14 @@
         <!-- Comienza el paginado -->
         <nav aria-label="Page navigation example" id="nav-pagination">
             <ul class="pagination" id="pagination">
-              <li class="page-item" id="start"><a class="page-link traducible" id="previous" href="#">Anterior</a></li>
-              <li class="page-item"><a class="page-link" id="first numbers" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" id="second numbers" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" id="three numbers" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" id="four numbers" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" id="five numbers" href="#">5</a></li>
-              <li class="page-item" id="finish"><a class="page-link traducible" id="next" href="#">Siguiente</a></li>
+                <li class="page-item" id="start"><a class="page-link traducible" id="previous" href="#">Anterior</a>
+                </li>
+                <li class="page-item"><a class="page-link" id="first numbers" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" id="second numbers" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" id="three numbers" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" id="four numbers" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" id="five numbers" href="#">5</a></li>
+                <li class="page-item" id="finish"><a class="page-link traducible" id="next" href="#">Siguiente</a></li>
             </ul>
         </nav>
         <!-- Finaliza el paginado -->
@@ -119,78 +131,115 @@
         </div>
         <div class="img-container">
             <div class="images">
-                <a href="/javascript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript"></a>
+                <a href="/javascript"><img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
+                        alt="JavaScript"></a>
             </div>
             <div class="images">
-                <a href="/htmlcss"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML"></a>
+                <a href="/htmlcss"><img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
+                        alt="HTML"></a>
             </div>
             <div class="images">
-                <a href="/htmlcss"><img class="css" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS"></a>
+                <a href="/htmlcss"><img class="css"
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
+                        alt="CSS"></a>
             </div>
             <div class="images">
-                <a href="/python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"></a>
+                <a href="/python"><img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+                        alt="Python"></a>
             </div>
             <div class="images">
-                <a href="/typescript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript"></a>
+                <a href="/typescript"><img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg"
+                        alt="TypeScript"></a>
             </div>
             <div class="images">
-                <a href="/otros"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" alt="Bash/Shell"></a>
+                <a href="/otros"><img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg"
+                        alt="Bash/Shell"></a>
             </div>
             <div class="images">
-                <a href="/sql"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg" alt="SQL"></a>
+                <a href="/sql"><img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg"
+                        alt="SQL"></a>
             </div>
             <div class="images">
-                <a href="/otros"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS"></a>
+                <a href="/otros"><img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+                        alt="AWS"></a>
             </div>
             <div class="images">
-                <a href="/javascript/node.js"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg" alt="Node.js"></a>
+                <a href="/javascript/node.js"><img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg"
+                        alt="Node.js"></a>
             </div>
             <div class="images">
-                <a href="/javascript/react"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React"></a>
+                <a href="/javascript/react"><img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
+                        alt="React"></a>
             </div>
             <div class="images">
-                <a href="/javascript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" alt="Vue"></a>
+                <a href="/javascript"><img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg"
+                        alt="Vue"></a>
             </div>
             <div class="images">
-                <a href="/javascript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" alt="Next.js"></a>
+                <a href="/javascript"><img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg"
+                        alt="Next.js"></a>
             </div>
             <div class="images">
-                <a href="/python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" alt="Django"></a>
+                <a href="/python"><img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg"
+                        alt="Django"></a>
             </div>
             <div class="images">
-                <a href="/typescript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" alt="Angular"></a>
+                <a href="/typescript"><img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg"
+                        alt="Angular"></a>
             </div>
             <div class="images">
-                <a href="/java"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java"></a>
+                <a href="/java"><img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg"
+                        alt="Java"></a>
             </div>
             <div class="images">
-                <a href="/otros"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker"></a>
+                <a href="/otros"><img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg"
+                        alt="Docker"></a>
             </div>
         </div>
+    </div>
+    <!-- Finalizan los lenguajes -->
+
+    <!-- Comienza el footer -->
+    <footer class="footer">
+        <p class="footer-brand"><img src="views/utility/footerLogo.png" alt="" class="logo0"> CodeFree</p>
+        <div class="social-media">
+            <a href="https://www.linkedin.com/in/tomas-pino-001161285/" target="_blank" class="annoyingLine">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/TomasPino5" target="_blank" class="annoyingLine">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:tomaspino48@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
         </div>
-        <!-- Finalizan los lenguajes -->
+        <p class="copy traducible">© CodeFree. Todos los derechos reservados.</p>
+    </footer>
+    <!-- Finaliza el footer -->
 
-        <!-- Comienza el footer -->
-        <footer class="footer">
-            <p class="footer-brand"><img src="views/utility/footerLogo.png" alt="" class="logo0"> CodeFree</p>
-            <div class="social-media">
-                <a href="https://www.linkedin.com/in/tomas-pino-001161285/" target="_blank" class="annoyingLine">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/TomasPino5" target="_blank" class="annoyingLine">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:tomaspino48@gmail.com">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
-            <p class="copy traducible">© CodeFree. Todos los derechos reservados.</p>
-        </footer>
-        <!-- Finaliza el footer -->
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+    <script src="../views/home/index.js"></script>
+</body>
 
-        <!-- JS -->
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-        <script src="../views/home/index.js"></script>
-    </body>
 </html>

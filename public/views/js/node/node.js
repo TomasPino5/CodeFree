@@ -1,3 +1,11 @@
+window.addEventListener("load", function () {
+    let loader = document.getElementById("loader");
+
+    setTimeout(() => {
+        loader.style.display = "none";
+    }, 500);
+});
+
 function getRandomObjects(value) {
     let filterValue = value.filter(element => element.category == 'Node.js')
     for (let i = filterValue.length - 1; i > 0; i--) {
@@ -310,6 +318,8 @@ let translate = () => {
     }
     
     let isTranslated = localStorage.getItem("language") == "en";
+
+    let count = 0;
     
     document.getElementById("translateBtn").addEventListener("click", async () => {
         if (!isTranslated) {
@@ -351,6 +361,14 @@ let translate = () => {
             localStorage.setItem("language", "es");
             isTranslated = false
         }
+        if (count == 0) {
+            let loader = document.getElementById("loader");
+            loader.style.display = "flex";
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 500);
+        }
+        count++;
     });
 }
 translate()

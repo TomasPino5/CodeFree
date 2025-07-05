@@ -1,3 +1,11 @@
+window.addEventListener("load", function () {
+    let loader = document.getElementById("loader");
+
+    setTimeout(() => {
+        loader.style.display = "none";
+    }, 500);
+});
+
 function getRandomObjects(value) {
     for (let i = value.length - 1; i > 0; i--) {
         let randomIndex = Math.floor(Math.random() * (i + 1));
@@ -14,17 +22,17 @@ function renderedCards(value, index) {
             if (localStorage.getItem("language") == "en") {
                 let elements = document.querySelectorAll(".traducible");
                 let texts = Array.from(elements).map(el => el.innerText);
-                
+
                 let translatedTexts = await Promise.all(
                     texts.map(text => translateText(text, 'en'))
                 );
-                
+
                 elements.forEach((el, index) => {
                     el.innerText = translatedTexts[index];
                 });
 
                 carrousel("en");
-    
+
                 localStorage.setItem("language", "en");
             }
         }, 15);
@@ -43,7 +51,7 @@ function renderedCards(value, index) {
         "Horas": "Hours",
         "Hora": "Hour",
     };
-    
+
     async function translateText(text, lang) {
         if (lang == 'en') {
             if (customDictionary[text]) {
@@ -60,15 +68,15 @@ function renderedCards(value, index) {
     if (index == 1) {
         slicedValue = value.slice(0, 25);
     } else if (index == 2) {
-        slicedValue = value.slice(25, 50); 
+        slicedValue = value.slice(25, 50);
     } else if (index == 3) {
-        slicedValue = value.slice(50, 75); 
+        slicedValue = value.slice(50, 75);
     } else if (index == 4) {
-        slicedValue = value.slice(75, 100); 
+        slicedValue = value.slice(75, 100);
     } else if (index == 5) {
-        slicedValue = value.slice(100, 125); 
+        slicedValue = value.slice(100, 125);
     } else if (index == 100) {
-        slicedValue = value.slice(0, 125); 
+        slicedValue = value.slice(0, 125);
     }
 
     slicedValue.forEach(element => {
@@ -88,103 +96,103 @@ function renderedCards(value, index) {
 
 let loadCourses = () => {
     fetch('../data/videos.json')
-    .then(response => response.json())
-    .then(value => {
-        let responseVideos = getRandomObjects(value)
- 
-        let pageLinks = document.querySelectorAll(".page-link")
-        
-        let previous = document.getElementById('previous')
-        let next = document.getElementById('next')
-            
-        let index = 1
-        let actualIndex = 1
-         
-        document.getElementById('start').classList.add('disabled')
-            
-        const updateActive = (newIndex) => {
-            pageLinks[index].classList.remove("active");
-            index = newIndex;
-            pageLinks[index].classList.add("active");
-        };
-            
-        updateActive(index);
-            
-        pageLinks.forEach((link, idx) => {
-            link.addEventListener("click", () => {
-                if(idx > 0 && idx < 6) {
-                    updateActive(idx);
-                    actualIndex = idx
-                    btnController()
-                    handlePagination(actualIndex)
+        .then(response => response.json())
+        .then(value => {
+            let responseVideos = getRandomObjects(value)
+
+            let pageLinks = document.querySelectorAll(".page-link")
+
+            let previous = document.getElementById('previous')
+            let next = document.getElementById('next')
+
+            let index = 1
+            let actualIndex = 1
+
+            document.getElementById('start').classList.add('disabled')
+
+            const updateActive = (newIndex) => {
+                pageLinks[index].classList.remove("active");
+                index = newIndex;
+                pageLinks[index].classList.add("active");
+            };
+
+            updateActive(index);
+
+            pageLinks.forEach((link, idx) => {
+                link.addEventListener("click", () => {
+                    if (idx > 0 && idx < 6) {
+                        updateActive(idx);
+                        actualIndex = idx
+                        btnController()
+                        handlePagination(actualIndex)
+                    }
+                });
+            });
+
+            previous.addEventListener("click", () => {
+                updateActive(index - 1)
+                actualIndex--
+                btnController()
+                handlePagination(actualIndex)
+            })
+
+            next.addEventListener("click", () => {
+                updateActive(index + 1);
+                actualIndex++
+                btnController()
+                handlePagination(actualIndex)
+            });
+
+            let btnController = () => {
+                if (actualIndex == 1) {
+                    document.getElementById('start').classList.add('disabled');
+                } else {
+                    document.getElementById('start').classList.remove('disabled');
+                }
+
+                if (actualIndex == 5) {
+                    document.getElementById('finish').classList.add('disabled');
+                } else {
+                    document.getElementById('finish').classList.remove('disabled');
+                }
+            }
+
+            document.getElementById('searchForm').addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                let searchTerm = document.getElementById('inputSearch').value.trim();
+
+                if (searchTerm) {
+                    window.location.href = `/search?query=${encodeURIComponent(searchTerm)}`;
                 }
             });
-        });
-            
-        previous.addEventListener("click", () => {
-            updateActive(index - 1)
-            actualIndex--
-            btnController()
+
+
+            let handlePagination = (actualIndex) => {
+                switch (actualIndex) {
+                    case 1:
+                        renderedCards(responseVideos, 1)
+                        break;
+                    case 2:
+                        renderedCards(responseVideos, 2)
+                        break;
+                    case 3:
+                        renderedCards(responseVideos, 3)
+                        break;
+                    case 4:
+                        renderedCards(responseVideos, 4)
+                        break;
+                    case 5:
+                        renderedCards(responseVideos, 5)
+                        break;
+                    default: console.log("Lo siento, ocurrio un error al reenderizar los videos")
+                }
+            }
             handlePagination(actualIndex)
         })
-            
-        next.addEventListener("click", () => {
-            updateActive(index + 1);
-            actualIndex++
-            btnController()
-            handlePagination(actualIndex)
-        });
-            
-        let btnController = () => {
-            if (actualIndex == 1) {
-                document.getElementById('start').classList.add('disabled');
-            } else {
-                document.getElementById('start').classList.remove('disabled');
-            }
-                
-            if (actualIndex == 5) {
-                    document.getElementById('finish').classList.add('disabled');
-            } else {
-                document.getElementById('finish').classList.remove('disabled');
-            }
-        }
-
-        document.getElementById('searchForm').addEventListener('submit', (event) => {
-            event.preventDefault();
-        
-            let searchTerm = document.getElementById('inputSearch').value.trim();
-        
-            if (searchTerm) {
-                window.location.href = `/search?query=${encodeURIComponent(searchTerm)}`;
-            }
-        });
-        
-        
-        let handlePagination = (actualIndex) => {
-            switch (actualIndex) {
-                case 1: 
-                renderedCards(responseVideos, 1)
-                    break;
-                case 2: 
-                renderedCards(responseVideos, 2)
-                    break;
-                case 3: 
-                renderedCards(responseVideos, 3)
-                    break;
-                case 4: 
-                renderedCards(responseVideos, 4)
-                    break;
-                case 5: 
-                renderedCards(responseVideos, 5)
-                    break;
-                default: console.log("Lo siento, ocurrio un error al reenderizar los videos")
-            } 
-        }
-        handlePagination(actualIndex)
-    })
 }
 loadCourses()
-  
+
 let carouselInterval;
 let carouselIndex = 0;
 
@@ -238,19 +246,19 @@ let translate = () => {
                 document.getElementById("language").src = "../../img/english.png";
                 let elements = document.querySelectorAll(".traducible");
                 let texts = Array.from(elements).map(el => el.innerText);
-                
+
                 let translatedTexts = await Promise.all(
                     texts.map(text => translateText(text, 'en'))
                 );
-                
+
                 elements.forEach((el, index) => {
                     el.innerText = translatedTexts[index];
                 });
-            
+
                 document.getElementById('inputSearch').placeholder = 'Search for a video...';
 
                 carrousel("en");
-    
+
                 localStorage.setItem("language", "en");
                 isTranslated = true;
             }
@@ -278,11 +286,11 @@ let translate = () => {
         "© CodeFree. Todos los derechos reservados.": "© CodeFree. All rights reserved.",
         "Otros lenguajes": "Other languages"
     };
-    
+
     let invertedDictionary = Object.fromEntries(
         Object.entries(customDictionary).map(([key, value]) => [value, key])
     );
-    
+
     async function translateText(text, lang) {
         if (lang == 'en') {
             if (customDictionary[text]) {
@@ -302,23 +310,25 @@ let translate = () => {
             return translatedText;
         }
     }
-    
+
     let isTranslated = localStorage.getItem("language") == "en";
-    
+
+    let count = 0;
+
     document.getElementById("translateBtn").addEventListener("click", async () => {
         if (!isTranslated) {
             document.getElementById("language").src = "../../img/english.png"
             let elements = document.querySelectorAll(".traducible");
             let texts = Array.from(elements).map(el => el.innerText);
-            
+
             let translatedTexts = await Promise.all(
                 texts.map(text => translateText(text, 'en'))
             );
-            
+
             elements.forEach((el, index) => {
                 el.innerText = translatedTexts[index];
             });
-        
+
             document.getElementById('inputSearch').placeholder = 'Search for a video...'
 
             carrousel("en");
@@ -326,18 +336,18 @@ let translate = () => {
             localStorage.setItem("language", "en");
             isTranslated = true
         } else {
-            document.getElementById("language").src = "../../img/es.png"     
+            document.getElementById("language").src = "../../img/es.png"
             let elements = document.querySelectorAll(".traducible");
             let texts = Array.from(elements).map(el => el.innerText);
-            
+
             let translatedTexts = await Promise.all(
                 texts.map(text => translateText(text, 'es'))
             );
-            
+
             elements.forEach((el, index) => {
                 el.innerText = translatedTexts[index];
             });
-    
+
             document.getElementById('inputSearch').placeholder = 'Busca un video...'
 
             carrousel("es");
@@ -345,6 +355,14 @@ let translate = () => {
             localStorage.setItem("language", "es");
             isTranslated = false
         }
+        if (count == 0) {
+            let loader = document.getElementById("loader");
+            loader.style.display = "flex";
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 500);
+        }
+        count++;
     });
 }
 translate()
