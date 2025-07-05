@@ -8,26 +8,19 @@ Este proyecto es una plataforma web diseñada para ofrecer cursos gratuitos de p
 
 Funciones destacadas:
 
-. Traduccion con manejo de local storage.
-. 
+. Traduccion de ingles/español con manejo de local storage.
+. Carrousel de imagenes dinamico.
+. Busqueda por coincidencia.
+. Busuqeda por categoria.
+. Filtros y ordenamientos combinados.
 
 ## **Tecnologias utilizadas💻**
 
-<div align="center">
-  <table border>
-    <thead>
-      <tr>
-        <th>Technologies</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <a href="https://skillicons.dev">
-            <img src="https://skillicons.dev/icons?i=css,js,react,redux,nodejs,express,postgres" />
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+. HTML
+. CSS
+. JavaScript (vanilla)
+. Node.js
+. Express
+. Boostrap
+. AWS (Lightsail)
+. NGINX
