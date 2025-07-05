@@ -8,19 +8,19 @@ Este proyecto es una plataforma web diseñada para ofrecer cursos gratuitos de p
 
 Funciones destacadas:
 
-. Traduccion de ingles/español con manejo de local storage.
-. Carrousel de imagenes dinamico.
-. Busqueda por coincidencia.
-. Busuqeda por categoria.
-. Filtros y ordenamientos combinados.
+. Traduccion de ingles/español con manejo de local storage.<br>
+. Carrousel de imagenes dinamico.<br>
+. Busqueda por coincidencia.<br>
+. Busuqeda por categoria.<br>
+. Filtros y ordenamientos combinados.<br>
 
 ## **Tecnologias utilizadas💻**
 
-. HTML
-. CSS
-. JavaScript (vanilla)
-. Node.js
-. Express
-. Boostrap
-. AWS (Lightsail)
-. NGINX
+. HTML<br>
+. CSS<br>
+. JavaScript (vanilla)<br>
+. Node.js<br>
+. Express<br>
+. Boostrap<br>
+. AWS (Lightsail)<br>
+. NGINX<br>
