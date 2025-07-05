@@ -14,7 +14,7 @@ Este proyecto es una plataforma web diseñada para ofrecer cursos gratuitos de p
 . Busuqeda por categoria.<br>
 . Filtros y ordenamientos combinados.<br>
 
-## **Tecnologias utilizadas💻**
+## **💻 Tecnologias utilizadas**
 
 . HTML<br>
 . CSS<br>
