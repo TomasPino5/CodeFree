@@ -1,6 +1,6 @@
 # **CodeFree**
 
-Visitar el siguiente link: <a href="https://codefree.site/inicio" target="_blank">CodeFree</a>
+Visitar la pagina en el siguiente link: <a href="https://codefree.site/inicio" target="_blank">CodeFree</a>
 
 ## **📌 OBJETIVOS**
 
