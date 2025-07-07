@@ -8,6 +8,7 @@ Este proyecto es una plataforma web diseñada para ofrecer cursos gratuitos de p
 
 ## **⚙️ FUNCIONES DESTACADAS**
 
+. Diseño web responsive.<br>
 . Traduccion de ingles/español con manejo de local storage.<br>
 . Carrousel de imagenes dinamico.<br>
 . Busqueda por coincidencia.<br>
