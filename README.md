@@ -14,6 +14,7 @@ Este proyecto es una plataforma web diseñada para ofrecer cursos gratuitos de p
 . Busqueda por coincidencia.<br>
 . Busuqeda por categoria.<br>
 . Filtros y ordenamientos combinados.<br>
+. Manipulacion de JSON.<br>
 
 ## **💻 Tecnologias utilizadas**
 
